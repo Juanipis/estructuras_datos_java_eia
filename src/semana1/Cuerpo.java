@@ -1,9 +1,17 @@
+/*Juan Pablo Díaz Correa @Juanipis*/
 package semana1;
 
 public class Cuerpo {
 	private double espacio;
 	private double tiempo;
 	
+	/*Constructor*/
+	/*
+	public Cuerpo(double espacio, double tiempo) {
+		this.espacio = espacio;
+		this.tiempo = tiempo;
+	}
+	*/
 	/*Setters*/
 	public void setEspacio(double espacio) {
 		this.espacio = espacio;
