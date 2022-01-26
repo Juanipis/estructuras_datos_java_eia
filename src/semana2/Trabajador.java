@@ -22,7 +22,7 @@ public class Trabajador {
 	}
 	
 	/*Dias trabajados*/
-	private double getCantDiasTrabajados() {
+	public int getCantDiasTrabajados() {
 		return cantDiasTrabajados;
 	}
 	public void setCantDiasTrabajados(int cantDiasTrabajados) {

@@ -1,31 +1,39 @@
 package semana2;
 
-import java.util.Arrays;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Proyecto pr1 = new Proyecto();
+		
+		/*Creamos trabajadores*/
 		Trabajador tr1 = new Trabajador("Pepe", 9999.912);
+		Trabajador tr2 = new Trabajador("Arnonldo", 1000023.21);
+		Trabajador tr3 = new Trabajador("Jhoana", 33123.21);
+		Trabajador tr4 = new Trabajador("Joaquin", 765871.912);
+		Trabajador tr5 = new Trabajador("Mañiño", 78542.6);
+		Trabajador tr6 = new Trabajador("Gabriel", 12344.55);
+		
+		/*Establecemos días de los trabajadores*/
 		tr1.setCantDiasTrabajados(13);
-		System.out.println(tr1.getSalario());
-		System.out.println(tr1);
+		tr2.setCantDiasTrabajados(2);
+		tr3.setCantDiasTrabajados(9);
+		tr4.setCantDiasTrabajados(20);
+		tr5.setCantDiasTrabajados(14);
+		tr6.setCantDiasTrabajados(18);
 		
+		/*Añadimos trabajadores*/
+		pr1.addTrabajador(tr1);
+		pr1.addTrabajador(tr2);
+		pr1.addTrabajador(tr3);
+		pr1.addTrabajador(tr4);
+		pr1.addTrabajador(tr5);
+		pr1.addTrabajador(tr6);
+
 		
-		/*Arreglos*/
-		
-		String[] nombre = new String[12];
-		nombre[2] = "pepe";
-		System.out.println(nombre[1]);
-		
-		char[] letras = {'a','b','c'};
-		System.out.println(letras.length);
-		
-		int [][] a = {{1, 2, 3}, {4,5,6}};
-		
-		System.out.println(a[1][2]);
-		
-		Arrays.fill
-		
+		System.out.println(pr1.buscarSalarioTrabajador("Pepe"));
+		System.out.println(pr1.buscarSalarioTrabajador("Joaquin"));
+		System.out.println(pr1.getHorasProyecto());
 
 	}
 
