@@ -4,12 +4,16 @@ public class Trabajador {
 	private String nombre;
 	private double salarioBasico;
 	private int cantDiasTrabajados;
+	private int[] cantDiasTrabajadosMes;
+	
 	
 	
 	public Trabajador(String nombre, double salarioBasico) {
 		this.setNombre(nombre);
 		this.setSalarioBasico(salarioBasico);
 		this.cantDiasTrabajados = 0;
+		
+		
 	}
 	
 
@@ -38,6 +42,15 @@ public class Trabajador {
 		this.nombre = nombre;
 	}
 	
+	public int[] getCantDiasTrabajadosMes() {
+		return cantDiasTrabajadosMes;
+	}
+
+
+	public void setCantDiasTrabajadosMes(int[] cantDiasTrabajadosMes) {
+		this.cantDiasTrabajadosMes = cantDiasTrabajadosMes;
+	}
+	
 	
 	
 	public double getSalario() {
@@ -48,6 +61,9 @@ public class Trabajador {
 	public String toString() {
 		return this.getNombre() + " tiene como salario para este mes: " + this.getSalario() + " pesos";
 	}
+
+
+	
 
 	
 	
