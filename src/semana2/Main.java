@@ -1,10 +1,13 @@
 package semana2;
 
 
+
 public class Main {
 
 	public static void main(String[] args) {
-		Proyecto pr1 = new Proyecto();
+		Empresa em1 = new Empresa();
+		Mes m1 = new Mes();
+		Proyecto pr1 = new Proyecto(); /*Proyecto 0*/
 		
 		/*Creamos trabajadores*/
 		Trabajador tr1 = new Trabajador("Pepe", 9999.912);
@@ -30,10 +33,22 @@ public class Main {
 		pr1.addTrabajador(tr5);
 		pr1.addTrabajador(tr6);
 
-		
+		/*Probamos salarios*/
 		System.out.println(pr1.buscarSalarioTrabajador("Pepe"));
 		System.out.println(pr1.buscarSalarioTrabajador("Joaquin"));
+		
+		/*Probamos el obtener horas de proyecto*/
 		System.out.println(pr1.getHorasProyecto());
+		
+		m1.addProyecto(0, pr1);
+		System.out.println(m1.getHorasProyecto(0));
+		
+		em1.addProyecto(0, m1);
+		
+		
+		System.out.println(em1.getHorasTotalProyecto(0));
+		
+		
 
 	}
 

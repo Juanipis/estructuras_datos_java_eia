@@ -1,32 +1,51 @@
 package semana2;
 
 public class Empresa {
-	private Mes[] mesesEmpresa;
+	public Mes[] mesesEmpresa = new Mes[12];
 	
 	public Empresa() {
-		this.mesesEmpresa = new Mes[12];
+
 	}
+	
 
 	public Mes[] getMesesEmpresa() {
 		return mesesEmpresa;
 	}
 	
-	public void addProyecto(int numPr,int mes, Proyecto  pr) {
-		this.getMesesEmpresa()[mes].addProyecto(numPr, pr);
+	public void addProyecto(int mes, Mes  mr) {
+		this.getMesesEmpresa()[mes] = mr;
+		/*
+		if(pr != null) {
+			this.getMesesEmpresa()[mes].addProyecto(numPr, pr);
+		}
+		*/
+		
 	}
 	
 	public int getHorasTotalProyecto(int numPr) {
 		int horas = 0;
 		
 		for(int i = 0; i < this.getMesesEmpresa().length; i++) {
-			horas += this.getMesesEmpresa()[i].getHorasProyecto(numPr);
+			try {
+				horas += this.getMesesEmpresa()[i].getHorasProyecto(numPr);
+			}
+			catch(Exception NullPointerException) {
+				continue;
+			}
+			
 		}
 		
 		return horas;
 	}
 	
 	public int getHorasMesProyecto(int mes, int numPr) {
-		return this.getMesesEmpresa()[mes].getHorasProyecto(numPr);
+		try {
+			return this.getMesesEmpresa()[mes].getHorasProyecto(numPr);
+		}
+		catch(Exception NullPointerException) {
+			return -1;
+		}
+		
 	}
 	
 	public int getHorasTotalEmpresa() {
@@ -34,7 +53,13 @@ public class Empresa {
 		
 		for(int mes = 0; mes < this.getMesesEmpresa().length; mes++) {
 			for(int pr = 0; pr < this.getMesesEmpresa()[mes].getProyectos().length; pr++) {
-				horas += this.getMesesEmpresa()[mes].getProyectos()[pr].getHorasProyecto();
+				try {
+					horas += this.getMesesEmpresa()[mes].getProyectos()[pr].getHorasProyecto();
+				}
+				catch(Exception NullPointerException ){
+					continue;
+				}
+				
 			}
 		}
 		

@@ -3,9 +3,7 @@ package semana2;
 public class Mes {
 	private Proyecto[] proyectos;
 	
-	public Mes() {
-		super();
-		
+	public Mes() {		
 		this.proyectos = new Proyecto[20];
 	}
 	
@@ -14,7 +12,10 @@ public class Mes {
 	}
 	
 	public void addProyecto(int posicion, Proyecto pr) {
-		this.getProyectos()[posicion] = pr;
+		if(pr != null) {
+			this.getProyectos()[posicion] = pr;
+		}
+		
 	}
 	
 	public int getHorasProyecto(int posicion) {
