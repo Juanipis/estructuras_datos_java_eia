@@ -11,8 +11,10 @@ public class Main {
 		Proyecto pr1 = new Proyecto(); /*Proyecto 0*/
 		Proyecto pr2 = new Proyecto(); /*Proyecto 1*/
 		
-		pr1.addTrabajador("Pepe", 99992344.912);
-		pr1.addTrabajador("Arnoldo", 1000023.21);
+		/*Añadimos trabajadores*/
+		//*
+		pr1.addTrabajador("Pepe", 99344.912);
+		pr1.addTrabajador("Arnoldo", 1023.21);
 		pr1.addTrabajador("Jhoana", 33123.21);
 		pr1.addTrabajador("Joaquin", 765871.912);
 		pr1.addTrabajador("Mañiño", 78542.6);
@@ -24,10 +26,20 @@ public class Main {
 		pr2.addTrabajador("Mejia", 765871.912);
 		pr2.addTrabajador("Florentino", 78542.6);
 		pr2.addTrabajador("Miranda", 12344.55);
+		//*/
+		
+		//Probamos el insertar trabajadores
+		pr1.insertarTrabajador("Mejia", 12902, 3);
+		System.out.println(pr1.buscarTrabajador("Mejia"));
+		
+		//pr1.eliminarTrabajador("Mejia");
+		System.out.println(pr1.buscarTrabajador("Mejia"));
+		
 		
 		
 		
 		/*Establecemos días de los trabajadores*/
+		///*
 		pr1.setCantDiasTrabajados("Pepe",13);
 		pr1.setCantDiasTrabajados("Arnoldo", 2);
 		pr1.setCantDiasTrabajados("Jhoana", 9);
@@ -41,12 +53,28 @@ public class Main {
 		pr2.setCantDiasTrabajados("Mejia", 13);
 		pr2.setCantDiasTrabajados("Florentino", 17);
 		pr2.setCantDiasTrabajados("Miranda", 22);
+		//*/
 		
-		/*Añadimos trabajadores*/
+		//Establecemos cantidad de dias trabajados por mes
+		pr1.setCantDiasTrabajadosMes("Pepe", 0, 12);
+		pr1.setCantDiasTrabajadosMes("Pepe", 2, 12);
+		pr1.setCantDiasTrabajadosMes("Pepe", 4, 12);
+		pr1.setCantDiasTrabajadosMes("Pepe", 11, 12);
+		
+		pr1.setCantDiasTrabajadosMes("Arnoldo", 0, 20);
+		pr1.setCantDiasTrabajadosMes("Arnoldo", 2, 1);
+		pr1.setCantDiasTrabajadosMes("Arnoldo", 4, 23);
+		pr1.setCantDiasTrabajadosMes("Arnoldo", 11, 11);
+		
+		System.out.println(pr1.getSalarioMesTrabajador("Pepe", 2));
+		System.out.println(pr1.getSalarioMesTrabajador("Arnoldo", 2));
+		System.out.println("Salario promedio por mes: " + pr1.getSalarioPromedioMes(2));
+		
+		
 
 		/*Probamos salarios*/
-		System.out.println(pr1.buscarSalarioTrabajador("Pepe"));
-		System.out.println(pr1.buscarSalarioTrabajador("Joaquin"));
+		System.out.println("Salario de Pepe: " + pr1.getSalarioTrabajador("Pepe"));
+		System.out.println("Salario de Joaquin: " + pr1.getSalarioTrabajador("Joaquin"));
 		
 		/*Probamos el obtener horas de proyecto*/
 		System.out.println("Horas proyecto 1"+ pr1.getHorasProyecto());

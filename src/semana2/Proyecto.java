@@ -20,26 +20,55 @@ public class Proyecto {
 	}
 	
 	public Trabajador buscarTrabajador(String nombre) {
+		if(this.getTrabajadores().length == 0) {
+			return null;
+		}
 		int c = 0;
-		while((c< this.trabajadores.length) && !(this.getTrabajadores()[c].getNombre().equals(nombre))) {
+		while((c< this.trabajadores.length) && this.getTrabajadores()[c] != null && !(this.getTrabajadores()[c].getNombre().equals(nombre)) ) {
 			c++;
 		}
 		return (this.trabajadores[c].getNombre().equals(nombre)) ? this.trabajadores[c]:null;
+	}
+	
+	public int getIndexTrabajador(String nombre) {
+		if(this.getTrabajadores().length == 0) {
+			return -1;
+		}
+		int c = 0;
+		while((c< this.trabajadores.length) && this.getTrabajadores()[c] != null && !(this.getTrabajadores()[c].getNombre().equals(nombre)) ) {
+			c++;
+		}
+		
+		return (this.trabajadores[c].getNombre().equals(nombre)) ? c:-1;
 	}
 	
 	public void setCantDiasTrabajados(String nombre, int diasTrabajados) {
 		this.buscarTrabajador(nombre).setCantDiasTrabajados(diasTrabajados);;
 	}
 	
-	public double buscarSalarioTrabajador(String nombre) {
+	public void setCantDiasTrabajadosMes(String nombre, int mes, int diasTrabajados) {
+		this.buscarTrabajador(nombre).setCantDiasTrabajadosMes(mes, diasTrabajados);
+	}
+	
+	public double getSalarioTrabajador(String nombre) {
+		if(this.getTrabajadores().length == 0) {
+			return Double.NaN;
+		}
 		return this.buscarTrabajador(nombre).getSalario();
+	}
+	
+	public double getSalarioMesTrabajador(String nombre, int mes) {
+		return this.buscarTrabajador(nombre).getSalarioMes(mes);
 	}
 	
 	public int getHorasProyecto() {
 		int horas = 0;
-		for(int i = 0; i < this.getTrabajadores().length; i++) { 
-			horas += (this.getTrabajadores()[i].getCantDiasTrabajados())*24;
+		int c = 0;
+		while((c< this.trabajadores.length) && this.getTrabajadores()[c] != null) {
+			horas += (this.getTrabajadores()[c].getCantDiasTrabajados())*24;
+			c++;
 		}
+		
 		return horas;
 	}
 	
@@ -50,26 +79,77 @@ public class Proyecto {
 			salMin = this.getTrabajadores()[0].getSalario();
 			
 			//For clasico
-			///*
+			/*
 			for(int i = 1; i < this.getTrabajadores().length; i++) {
 				salMin = (salMin > this.getTrabajadores()[i].getSalario()) ? this.getTrabajadores()[i].getSalario():salMin;
 			}
-			//*/
+			*/
 			
 			//For each 
-			/*
+			///*
 			for(Trabajador trabajador : this.getTrabajadores()) {
 				salMin = (salMin > trabajador.getSalario()) ? trabajador.getSalario():salMin;
 			}
-			*/
+			//*/
 			
 		}
 		else {
 			return -1;
 		}
-		
 		return salMin;
-		
+	}
+	
+	public double getSalarioPromedioMes(int mes) { //Teniendo en cuenta todos los trabajadores de un mes
+		double salarioPromedio = 0.0;
+		int meses = 0;
+		if(mes >= 0 && mes <= 11) {
+			for(Trabajador trabajador : this.getTrabajadores()) {
+				if(trabajador != null && trabajador.getSalarioMes(mes) !=-1.0) {
+					salarioPromedio += trabajador.getSalarioMes(mes);
+					meses++;
+				}
+			}
+		}
+		return (meses != 0) ? salarioPromedio/meses : -1;
+		}
+	
+	public void insertarTrabajador(String nombre, double salarioBasico, int index) {
+		if(index < this.getTrabajadores().length) {
+			Trabajador[] temp = new Trabajador[this.getTrabajadores().length+1];
+			temp[index] = new Trabajador(nombre, salarioBasico);
+			int arrA = 0;
+			int arrT = 0;
+			while(arrT < temp.length) {
+				if(arrT != index) {
+					temp[arrT] = this.getTrabajadores()[arrA];
+					arrA++;
+					arrT++;
+				}
+				else {
+					arrT++;
+				}
+			}
+			this.trabajadores = temp;
+		}
+	}
+	
+	public void eliminarTrabajador(String nombre) {
+		//Queda pendiente
+		if(this.buscarTrabajador(nombre) != null) {
+			Trabajador[] temp = new Trabajador[this.getTrabajadores().length-1];
+			int numTrabajador = this.getIndexTrabajador(nombre);
+			System.out.println(temp.length);
 
+			System.arraycopy(this.trabajadores, 0, temp, 0 , numTrabajador);
+			System.arraycopy(this.trabajadores, numTrabajador+1, temp, numTrabajador , temp.length);
+
+			
+			
+			this.trabajadores = temp;
+			
+			
+		}
+		
 	}
 }
+
