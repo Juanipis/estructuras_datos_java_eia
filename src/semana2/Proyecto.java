@@ -116,7 +116,7 @@ public class Proyecto {
 		}
 	
 	public void insertarTrabajador(String nombre, double salarioBasico, int index) {
-		if(index < this.getTrabajadores().length && index>0) {
+		if(index < this.getTrabajadores().length && index>=0) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length+1];
 			temp[index] = new Trabajador(nombre, salarioBasico);
 			int arrA = 0;
