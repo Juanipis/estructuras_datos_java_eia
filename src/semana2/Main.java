@@ -29,13 +29,17 @@ public class Main {
 		//*/
 		
 		//Probamos el insertar trabajadores
-		pr1.insertarTrabajador("Mejia", 12902, 3);
-		System.out.println(pr1.buscarTrabajador("Mejia"));
+		pr1.insertarTrabajador("Mejia", 12902, 8);
+		pr1.insertarTrabajador("Mejia", 12902, 5);
+		pr1.insertarTrabajador("Mejia", 12902, -4);
+		System.out.println(pr1.getTrabajador("Mejia"));
 		
-		//pr1.eliminarTrabajador("Mejia");
-		System.out.println(pr1.buscarTrabajador("Mejia"));
 		
-		
+		System.out.println("**************");
+		for(Trabajador pr : pr1.getTrabajadores()) {
+			System.out.println(pr);
+		}
+		System.out.println("**************");
 		
 		
 		/*Establecemos días de los trabajadores*/
@@ -66,12 +70,22 @@ public class Main {
 		pr1.setCantDiasTrabajadosMes("Arnoldo", 4, 23);
 		pr1.setCantDiasTrabajadosMes("Arnoldo", 11, 11);
 		
-		System.out.println(pr1.getSalarioMesTrabajador("Pepe", 2));
-		System.out.println(pr1.getSalarioMesTrabajador("Arnoldo", 2));
+		System.out.println("Pepe tiene como salario para el mes 2" + pr1.getSalarioMesTrabajador("Pepe", 2));
+		System.out.println("Arnoldo tiene como salario para el mes 2" + pr1.getSalarioMesTrabajador("Arnoldo", 2));
 		System.out.println("Salario promedio por mes: " + pr1.getSalarioPromedioMes(2));
 		
+		//Eliminamos a Gabriel y Mejia
+		pr1.eliminarTrabajador("Gabriel");
+		pr1.eliminarTrabajador("Mejia");
 		
-
+		
+		//Listamos trabajadores
+		System.out.println("**************");
+		for(Trabajador pr : pr1.getTrabajadores()) {
+			System.out.println(pr);
+		}
+		System.out.println("**************");
+		
 		/*Probamos salarios*/
 		System.out.println("Salario de Pepe: " + pr1.getSalarioTrabajador("Pepe"));
 		System.out.println("Salario de Joaquin: " + pr1.getSalarioTrabajador("Joaquin"));

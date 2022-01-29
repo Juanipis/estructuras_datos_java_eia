@@ -19,7 +19,7 @@ public class Proyecto {
 		this.trabajadores[this.trabajadores.length-1] = tr;
 	}
 	
-	public Trabajador buscarTrabajador(String nombre) {
+	public Trabajador getTrabajador(String nombre) {
 		if(this.getTrabajadores().length == 0) {
 			return null;
 		}
@@ -27,8 +27,10 @@ public class Proyecto {
 		while((c< this.trabajadores.length) && this.getTrabajadores()[c] != null && !(this.getTrabajadores()[c].getNombre().equals(nombre)) ) {
 			c++;
 		}
-		return (this.trabajadores[c].getNombre().equals(nombre)) ? this.trabajadores[c]:null;
+		
+		return (c!=this.getTrabajadores().length && this.trabajadores[c].getNombre().equals(nombre)) ? this.trabajadores[c]:null;
 	}
+	
 	
 	public int getIndexTrabajador(String nombre) {
 		if(this.getTrabajadores().length == 0) {
@@ -39,26 +41,26 @@ public class Proyecto {
 			c++;
 		}
 		
-		return (this.trabajadores[c].getNombre().equals(nombre)) ? c:-1;
+		return (c!=this.getTrabajadores().length && this.trabajadores[c].getNombre().equals(nombre)) ? c:-1;
 	}
 	
 	public void setCantDiasTrabajados(String nombre, int diasTrabajados) {
-		this.buscarTrabajador(nombre).setCantDiasTrabajados(diasTrabajados);;
+		this.getTrabajador(nombre).setCantDiasTrabajados(diasTrabajados);;
 	}
 	
 	public void setCantDiasTrabajadosMes(String nombre, int mes, int diasTrabajados) {
-		this.buscarTrabajador(nombre).setCantDiasTrabajadosMes(mes, diasTrabajados);
+		this.getTrabajador(nombre).setCantDiasTrabajadosMes(mes, diasTrabajados);
 	}
 	
 	public double getSalarioTrabajador(String nombre) {
 		if(this.getTrabajadores().length == 0) {
 			return Double.NaN;
 		}
-		return this.buscarTrabajador(nombre).getSalario();
+		return this.getTrabajador(nombre).getSalario();
 	}
 	
 	public double getSalarioMesTrabajador(String nombre, int mes) {
-		return this.buscarTrabajador(nombre).getSalarioMes(mes);
+		return this.getTrabajador(nombre).getSalarioMes(mes);
 	}
 	
 	public int getHorasProyecto() {
@@ -114,7 +116,7 @@ public class Proyecto {
 		}
 	
 	public void insertarTrabajador(String nombre, double salarioBasico, int index) {
-		if(index < this.getTrabajadores().length) {
+		if(index < this.getTrabajadores().length && index>0) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length+1];
 			temp[index] = new Trabajador(nombre, salarioBasico);
 			int arrA = 0;
@@ -135,18 +137,23 @@ public class Proyecto {
 	
 	public void eliminarTrabajador(String nombre) {
 		//Queda pendiente
-		if(this.buscarTrabajador(nombre) != null) {
+		if(this.getTrabajador(nombre) != null) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length-1];
 			int numTrabajador = this.getIndexTrabajador(nombre);
 			System.out.println(temp.length);
 
-			System.arraycopy(this.trabajadores, 0, temp, 0 , numTrabajador);
-			System.arraycopy(this.trabajadores, numTrabajador+1, temp, numTrabajador , temp.length);
-
+			int arT = 0;
+			int arO = 0;
 			
-			
+			while(arT < temp.length) {
+				if(arT == numTrabajador) {
+					arO++;
+				}
+				temp[arT] = this.getTrabajadores()[arO];
+				arT++;
+				arO++;
+			}
 			this.trabajadores = temp;
-			
 			
 		}
 		
