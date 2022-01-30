@@ -2,11 +2,11 @@ package semana3;
 
 public class Producto {
 	private String nombre;
-	private int horasProduccion;
+	private int produccionDiaria;
 	
-	public Producto(String nombre, int horasProduccion) {
+	public Producto(String nombre, int produccionDiaria) {
 		this.setNombre(nombre);
-		this.setHorasProduccion(horasProduccion);
+		this.setProduccionDiaria(produccionDiaria);
 	}
 	
 	public String getNombre() {
@@ -15,16 +15,16 @@ public class Producto {
 	private void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getHorasProduccion() {
-		return horasProduccion;
+	public int getProduccionDiaria() {
+		return this.produccionDiaria;
 	}
-	private void setHorasProduccion(int horasProduccion) {
-		this.horasProduccion = horasProduccion;
+	private void setProduccionDiaria(int produccionDiaria) {
+		this.produccionDiaria = produccionDiaria;
 	}
 	
 	@Override
 	public String toString() {
-		return this.getNombre() + " : " + this.getHorasProduccion();
+		return this.getNombre() + " : " + this.getProduccionDiaria();
 	}
 	
 }

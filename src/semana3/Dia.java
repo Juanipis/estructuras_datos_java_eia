@@ -7,9 +7,9 @@ public class Dia {
 		this.productos = new Producto[10]; //Son 10 productos por dia
 	}
 	
-	public void addProducto(String nombre, int horasProduccion, int index) {
+	public void addProducto(String nombre, int produccionDiaria, int index) {
 		if(index>=0 && index<productos.length) {
-			this.productos[index] = new Producto(nombre, horasProduccion);
+			this.productos[index] = new Producto(nombre, produccionDiaria);
 		}
 	}
 	

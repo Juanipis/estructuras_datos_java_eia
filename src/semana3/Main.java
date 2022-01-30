@@ -23,16 +23,16 @@ public class Main {
 		pr.addProductoDia("Correas", 20, 3, 0);
 				
 		//Probamos obtener total horas dia 0
-		System.out.println("Total de horas en el dia 0: " + pr.getProduccionTotalDia(0) + " horas" );
-		System.out.println("Total de horas en el dia 1: " + pr.getProduccionTotalDia(1) + " horas" );
-		System.out.println("Total de horas en el dia 2: " + pr.getProduccionTotalDia(2) + " horas" );
-		System.out.println("Total de horas en el dia 3: " + pr.getProduccionTotalDia(3) + " horas" );
+		System.out.println("Produccion total en el dia 0: " + pr.getProduccionTotalDia(0) + " productos" );
+		System.out.println("Produccion total en el dia 1: " + pr.getProduccionTotalDia(1) + " productos" );
+		System.out.println("Produccion total en el dia 2: " + pr.getProduccionTotalDia(2) + " productos" );
+		System.out.println("Produccion total en el dia 3: " + pr.getProduccionTotalDia(3) + " productos" );
 		
 		//Probamos obtener produccion total de un producto
-		System.out.println("Total de horas del producto correas: " + pr.getProduccionTotalProducto("Correas") + " horas");
+		System.out.println("Produccion total del producto correas: " + pr.getProduccionTotalProducto("Correas") + " productos");
 	
 		//Probamos obtener produccion total
-		System.out.println("Total de horas de produccion : " + pr.getProduccionTotal() + " horas");
+		System.out.println("Produccion total : " + pr.getProduccionTotal() + " productos");
 	}
 
 }

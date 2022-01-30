@@ -21,7 +21,7 @@ public class Produccion {
 			if(dia != null) {
 				for(Producto pr: dia.getProductos()) {
 					if(pr != null) {
-						horasProduccion += pr.getHorasProduccion();
+						horasProduccion += pr.getProduccionDiaria();
 					}
 				}
 			}
@@ -34,7 +34,7 @@ public class Produccion {
 		if(dia >= 0 && dia < this.semana.length) {
 			for(Producto pr: this.semana[dia].getProductos()) {
 				if(pr != null) {
-					horasProduccion += pr.getHorasProduccion();
+					horasProduccion += pr.getProduccionDiaria();
 				}
 			}
 		}
@@ -47,7 +47,7 @@ public class Produccion {
 			if(dia != null) {
 				for(Producto pr: dia.getProductos()) {
 					if(pr != null && pr.getNombre().equals(nombreProducto)) {
-						horasProduccion += pr.getHorasProduccion();
+						horasProduccion += pr.getProduccionDiaria();
 					}
 				}
 			}
