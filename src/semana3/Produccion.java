@@ -12,7 +12,9 @@ public class Produccion {
 	}
 	
 	public void addProductoDia(String nombre, int horasProduccion, int dia, int index) {
-		this.semana[dia].addProducto(nombre, horasProduccion, index);
+		if(dia >= 0 && dia < this.semana.length) {
+			this.semana[dia].addProducto(nombre, horasProduccion, index);
+		}
 	}
 	
 	public int getProduccionTotal() {

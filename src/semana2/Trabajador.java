@@ -60,7 +60,7 @@ public class Trabajador {
 		return this.getSalarioBasico()*this.getCantDiasTrabajados()/24.0;
 	}
 	public double getSalarioMes(int mes) {
-		return (this.getCantDiasTrabajadosMes()[mes] > -1) ? this.getSalarioBasico()*this.getCantDiasTrabajadosMes()[mes]/24.0 : -1;
+		return ( mes>=0 && mes< this.cantDiasTrabajadosMes.length  && this.getCantDiasTrabajadosMes()[mes] > -1) ? this.getSalarioBasico()*this.getCantDiasTrabajadosMes()[mes]/24.0 : -1;
 	}
 	
 	public double getSalarioPromedio() {

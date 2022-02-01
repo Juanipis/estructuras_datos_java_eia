@@ -19,7 +19,9 @@ public class Producto {
 		return this.produccionDiaria;
 	}
 	private void setProduccionDiaria(int produccionDiaria) {
-		this.produccionDiaria = produccionDiaria;
+		if(produccionDiaria >= 0) {
+			this.produccionDiaria = produccionDiaria;
+		}
 	}
 	
 	@Override

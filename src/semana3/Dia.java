@@ -8,7 +8,7 @@ public class Dia {
 	}
 	
 	public void addProducto(String nombre, int produccionDiaria, int index) {
-		if(index>=0 && index<productos.length) {
+		if(index>=0 && index<productos.length && produccionDiaria >=0) {
 			this.productos[index] = new Producto(nombre, produccionDiaria);
 		}
 	}

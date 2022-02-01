@@ -116,7 +116,7 @@ public class Proyecto {
 		}
 	
 	public void insertarTrabajador(String nombre, double salarioBasico, int index) {
-		if(index < this.getTrabajadores().length && index>=0) {
+		if(index>=0 && index < this.getTrabajadores().length && salarioBasico >= 0.0) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length+1];
 			temp[index] = new Trabajador(nombre, salarioBasico);
 			int arrA = 0;
@@ -136,7 +136,6 @@ public class Proyecto {
 	}
 	
 	public void eliminarTrabajador(String nombre) {
-		//Queda pendiente
 		if(this.getTrabajador(nombre) != null) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length-1];
 			int numTrabajador = this.getIndexTrabajador(nombre);
