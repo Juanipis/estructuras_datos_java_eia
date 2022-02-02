@@ -152,10 +152,70 @@ public class Proyecto {
 				arT++;
 				arO++;
 			}
-			this.trabajadores = temp;
-			
-		}
-		
+			this.trabajadores = temp;	
+		}	
 	}
+	
+	public double getSalarioMasAltoMes(int mes) {
+		double salarioAlto = 0;
+		if(mes >= 0 && mes < 12) {
+			for(Trabajador tr: this.trabajadores) {
+				if(tr != null) {
+					salarioAlto = (tr.getSalarioMes(mes) >= salarioAlto) ? tr.getSalario(): salarioAlto;
+				}
+			}
+		}
+		return salarioAlto;
+	}
+	
+	public double getSalarioMasBajoMes(int mes) {
+		double salarioBajo = 0;
+		if(mes >= 0 && mes < 12) {
+			salarioBajo = this.getTrabajadores()[0].getSalarioMes(mes);
+			for(Trabajador tr: this.trabajadores) {
+				if(tr != null) {
+					salarioBajo = (salarioBajo > tr.getSalarioMes(mes)) ? tr.getSalario(): salarioBajo;
+				}
+			}
+		}
+		return salarioBajo;
+	}
+	
+	public void eliminarTrabajadorRepetido(String nombre) {
+		while(this.getTrabajador(nombre) != null) {
+			this.eliminarTrabajador(nombre);
+		}
+	}
+	
+	public Trabajador getTrabajadorMayorNombre() {
+		if(this.trabajadores.length > 0) {
+			Trabajador result = this.trabajadores[0];
+			for(Trabajador tr : this.trabajadores) {
+				if(tr != null) {
+					result = (result.getNombre().compareTo(tr.getNombre()) >= 1) ? tr: result;
+				}
+			}
+			return result;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public Trabajador getTrabajadorMenorNombre() {
+		if(this.trabajadores.length > 0) {
+			Trabajador result = this.trabajadores[0];
+			for(Trabajador tr : this.trabajadores) {
+				if(tr != null) {
+					result = (result.getNombre().compareTo(tr.getNombre()) <= -1) ? tr: result;
+				}
+			}
+			return result;
+		}
+		else {
+			return null;
+		}
+	}
+	
 }
 

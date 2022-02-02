@@ -14,11 +14,14 @@ public class Main {
 		/*Añadimos trabajadores*/
 		//*
 		pr1.addTrabajador("Pepe", 99344.912);
-		pr1.addTrabajador("Arnoldo", 1023.21);
+		
 		pr1.addTrabajador("Jhoana", 33123.21);
 		pr1.addTrabajador("Joaquin", 765871.912);
 		pr1.addTrabajador("Mañiño", 78542.6);
 		pr1.addTrabajador("Gabriel", 12344.55);
+		pr1.addTrabajador("Arnoldo", 1023.21);
+		pr1.addTrabajador("AAAmoldo", 1023.21);
+		pr1.addTrabajador("Zoraida", 1023.21);
 		
 		pr2.addTrabajador("Manuel", 9999.912);
 		pr2.addTrabajador("Hernesto", 1000023.21);
@@ -89,6 +92,24 @@ public class Main {
 		/*Probamos salarios*/
 		System.out.println("Salario de Pepe: " + pr1.getSalarioTrabajador("Pepe"));
 		System.out.println("Salario de Joaquin: " + pr1.getSalarioTrabajador("Joaquin"));
+		
+		//Probamos obtener el salario mas alto
+		System.out.println("Salario mas alto del mes 0: " + pr1.getSalarioMasAltoMes(0));
+		System.out.println("Salario mas alto del mes 0: " + pr1.getSalarioMasBajoMes(0));
+		
+		//Probamos a eliminar trabajadores repetidos
+		pr1.addTrabajador("Oracio", 99344.912);
+		pr1.addTrabajador("Oracio", 8435.2);
+		pr1.addTrabajador("Oracio", 111.23);
+		pr1.addTrabajador("Oracio", 993.12);
+		pr1.eliminarTrabajadorRepetido("Oracio");
+		System.out.println("Se elimino trabajador oracio, se comprueba con: " + pr1.getTrabajador("Oracio"));
+		
+		//Probamos obtener el trabajador de mayor nombre
+		System.out.println("El trabajador que tiene mayor nombre es :" + pr1.getTrabajadorMayorNombre());
+		
+		//Probamos obtener el trabajador menor nombre
+		System.out.println("El trabajador que tiene menor nombre es :" + pr1.getTrabajadorMenorNombre());
 		
 		/*Probamos el obtener horas de proyecto*/
 		System.out.println("Horas proyecto 1"+ pr1.getHorasProyecto());
