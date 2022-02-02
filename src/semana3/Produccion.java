@@ -1,10 +1,16 @@
 package semana3;
 
 
-public class Produccion {
+public enum Produccion {
+	SEMANA1(),
+	SEMANA2(),
+	SEMANA3(),
+	SEMANA4();
+	
+	
 	private Dia[] semana;
 	
-	public Produccion(){
+	Produccion(){
 		this.semana = new Dia[7];
 		for (int i = 0; i < semana.length; i++) {
 			this.semana[i] = new Dia();

@@ -1,7 +1,10 @@
 package semana3;
 
 public class Dia {
+	
+	
 	private Producto[] productos;
+	
 	
 	public Dia() {
 		this.productos = new Producto[10]; //Son 10 productos por dia
