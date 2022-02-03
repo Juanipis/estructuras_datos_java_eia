@@ -135,6 +135,22 @@ public class Proyecto {
 		}
 	}
 	
+	public void eliminarTrabajadorIndex(int index) {
+		Trabajador[] temp = new Trabajador[this.getTrabajadores().length-1];
+		int arT = 0;
+		int arO = 0;
+		
+		while(arT < temp.length) {
+			if(arT == index) {
+				arO++;
+			}
+			temp[arT] = this.getTrabajadores()[arO];
+			arT++;
+			arO++;
+		}
+		this.trabajadores = temp;	
+	}
+	
 	public void eliminarTrabajador(String nombre) {
 		if(this.getTrabajador(nombre) != null) {
 			Trabajador[] temp = new Trabajador[this.getTrabajadores().length-1];
@@ -181,18 +197,29 @@ public class Proyecto {
 		return salarioBajo;
 	}
 	
+	//Eliminar trabajadores repetidos menos 1
 	public void eliminarTrabajadorRepetido(String nombre) {
 		Trabajador tr = null;
-		int c = 0;
+		int index = 0;
+		boolean c = false;
 		while(this.getTrabajador(nombre) != null) {
-			if(c == 0) {
-				c++;
+			if(!c) {
+				c = true;
 				tr = this.getTrabajador(nombre);
+				index = this.getIndexTrabajador(nombre);
+				System.out.println("---------" + index + "----------");
 			}
-			this.eliminarTrabajador(nombre);
+			this.eliminarTrabajadorIndex(this.getIndexTrabajador(nombre)); //ELiminar por index
 		}
-		this.addTrabajador(tr.getNombre(), tr.getSalarioBasico());
+		
+		if(tr != null) {
+			if(index >= this.trabajadores.length) {index--;}
+			System.out.println("---------" + index + "----------");
+			this.insertarTrabajador(tr.getNombre(), tr.getSalarioBasico(),index);
+		}
 	}
+	
+	
 	
 	public Trabajador getTrabajadorMayorNombre() {
 		if(this.trabajadores.length > 0) {

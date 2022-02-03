@@ -22,12 +22,16 @@ public class Main {
 		Produccion.MIERCOLES.addProductoDia("Correas", 15, 0);
 		Produccion.JUEVES.addProductoDia("Correas", 20, 0);
 		
+		//Añadir productos
+
+		
+		
 				
 		//Probamos obtener total horas dia 0
-		System.out.println("Produccion total en el dia LUNES: " + Produccion.LUNES.getProduccionTotalDia() + " productos" );
-		System.out.println("Produccion total en el dia MARTES: " + Produccion.MARTES.getProduccionTotalDia() + " productos" );
-		System.out.println("Produccion total en el dia MIERCOLES: " + Produccion.MIERCOLES.getProduccionTotalDia() + " productos" );
-		System.out.println("Produccion total en el dia JUEVES: " + Produccion.JUEVES.getProduccionTotalDia() + " productos" );
+		System.out.println("Produccion total en el dia LUNES: " + Produccion.getProduccionTotalDia("lunes") + " productos" );
+		System.out.println("Produccion total en el dia MARTES: " + Produccion.getProduccionTotalDia("martes") + " productos" );
+		System.out.println("Produccion total en el dia MIERCOLES: " + Produccion.getProduccionTotalDia("miercoles") + " productos" );
+		System.out.println("Produccion total en el dia JUEVES: " + Produccion.getProduccionTotalDia("jueves") + " productos" );
 		
 		//Probamos obtener produccion total de un producto
 		System.out.println("Produccion total del producto correas: " + Produccion.getProduccionTotalProducto("Correas") + " productos");

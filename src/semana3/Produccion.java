@@ -2,17 +2,24 @@ package semana3;
 
 
 public enum Produccion {
-	LUNES(),
-	MARTES(),
-	MIERCOLES(),
-	JUEVES(),
-	VIERNES();
+	LUNES("Lunes"),
+	MARTES("Martes"),
+	MIERCOLES("Miercoles"),
+	JUEVES("Jueves"),
+	VIERNES("Viernes");
 	
 	private Dia dia;
+	private String nombre;
 	
-	Produccion(){
+	Produccion(String nombre){
 		this.dia = new Dia();
+		this.nombre = nombre;
 	}
+	
+	public String getNombre() {
+		return this.nombre;
+	}
+	
 	public Dia getDia() {
 		return this.dia;
 	}
@@ -37,13 +44,16 @@ public enum Produccion {
 		return horasProduccion;
 	}
 	
-	public int getProduccionTotalDia() {
+	public static int getProduccionTotalDia(String nombreDia) {
 		int horasProduccion = 0;
-		for(Producto pra: this.getDia().getProductos()) {
-			if(pra != null) {
-				horasProduccion += pra.getProduccionDiaria();
+		if(Produccion.valueOf(nombreDia.toUpperCase()) != null) {
+			for(Producto pra: Produccion.valueOf(nombreDia.toUpperCase()).getDia().getProductos()) {
+				if(pra != null) {
+					horasProduccion += pra.getProduccionDiaria();
+				}
 			}
 		}
+		
 		return horasProduccion;
 	}
 	
@@ -56,5 +66,7 @@ public enum Produccion {
 		}
 		return horasProduccion;
 	}
+	
+	
 	
 }
