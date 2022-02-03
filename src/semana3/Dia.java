@@ -2,10 +2,6 @@ package semana3;
 
 public class Dia {
 	
-<<<<<<< HEAD
-=======
-	
->>>>>>> 366a126ed54db4ab53002c90a4bcf170eb631eb3
 	private Producto[] productos;
 	
 	

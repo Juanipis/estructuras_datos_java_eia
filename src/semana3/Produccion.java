@@ -2,7 +2,6 @@ package semana3;
 
 
 public enum Produccion {
-<<<<<<< HEAD
 	LUNES(),
 	MARTES(),
 	MIERCOLES(),
@@ -20,28 +19,9 @@ public enum Produccion {
 	
 	public void addProductoDia(String nombre, int cantProducida, int indexProducto) {
 		this.dia.addProducto(nombre, cantProducida, indexProducto);
-=======
-	SEMANA1(),
-	SEMANA2(),
-	SEMANA3(),
-	SEMANA4();
-	
-	
-	private Dia[] semana;
-	
-	Produccion(){
-		this.semana = new Dia[7];
-		for (int i = 0; i < semana.length; i++) {
-			this.semana[i] = new Dia();
-		}
 	}
 	
-	public void addProductoDia(String nombre, int horasProduccion, int dia, int index) {
-		if(dia >= 0 && dia < this.semana.length) {
-			this.semana[dia].addProducto(nombre, horasProduccion, index);
-		}
->>>>>>> 366a126ed54db4ab53002c90a4bcf170eb631eb3
-	}
+
 	
 	public static int getProduccionTotal() {
 		int horasProduccion = 0;
