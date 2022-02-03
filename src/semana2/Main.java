@@ -102,8 +102,23 @@ public class Main {
 		pr1.addTrabajador("Oracio", 8435.2);
 		pr1.addTrabajador("Oracio", 111.23);
 		pr1.addTrabajador("Oracio", 993.12);
+		System.out.println("----------*****------------");
+		for(Trabajador tr : pr1.getTrabajadores()) {
+			System.out.println(tr);
+		}
+		System.out.println("----------*****------------");
 		pr1.eliminarTrabajadorRepetido("Oracio");
-		System.out.println("Se elimino trabajador oracio, se comprueba con: " + pr1.getTrabajador("Oracio"));
+		
+		System.out.println("Se elimino trabajador repetido Oracio");
+		
+		System.out.println("----------*****------------");
+		for(Trabajador tr : pr1.getTrabajadores()) {
+			System.out.println(tr);
+		}
+		System.out.println("----------*****------------");
+		
+				
+				
 		
 		//Probamos obtener el trabajador de mayor nombre
 		System.out.println("El trabajador que tiene mayor nombre es :" + pr1.getTrabajadorMayorNombre());

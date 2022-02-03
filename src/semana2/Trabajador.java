@@ -22,7 +22,7 @@ public class Trabajador {
 	
 
 	/*Salario basico*/
-	private double getSalarioBasico() {
+	public double getSalarioBasico() {
 		return salarioBasico;
 	}
 	private void setSalarioBasico(double salarioBasico) {

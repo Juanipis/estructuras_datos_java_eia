@@ -182,9 +182,16 @@ public class Proyecto {
 	}
 	
 	public void eliminarTrabajadorRepetido(String nombre) {
+		Trabajador tr = null;
+		int c = 0;
 		while(this.getTrabajador(nombre) != null) {
+			if(c == 0) {
+				c++;
+				tr = this.getTrabajador(nombre);
+			}
 			this.eliminarTrabajador(nombre);
 		}
+		this.addTrabajador(tr.getNombre(), tr.getSalarioBasico());
 	}
 	
 	public Trabajador getTrabajadorMayorNombre() {
