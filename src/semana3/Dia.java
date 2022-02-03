@@ -2,7 +2,10 @@ package semana3;
 
 public class Dia {
 	
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 366a126ed54db4ab53002c90a4bcf170eb631eb3
 	private Producto[] productos;
 	
 	
@@ -22,9 +25,10 @@ public class Dia {
 	
 	public Producto getProducto(String nombre) {
 		int c = 0;
-		while(c < this.productos.length && !this.productos[c].getNombre().equals(nombre)) {
+		while(c < this.productos.length && this.productos[c] != null && !this.productos[c].getNombre().equals(nombre)) {
 			c++;
 		}
-		return (c != this.productos.length && this.productos[c].getNombre().equals(nombre)) ? this.productos[c]:null;
+		return (c < this.productos.length && this.productos[c] != null &&this.productos[c].getNombre().equals(nombre)) ? this.productos[c]:null;
 	}
+	
 }

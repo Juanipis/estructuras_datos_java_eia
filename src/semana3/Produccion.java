@@ -2,6 +2,25 @@ package semana3;
 
 
 public enum Produccion {
+<<<<<<< HEAD
+	LUNES(),
+	MARTES(),
+	MIERCOLES(),
+	JUEVES(),
+	VIERNES();
+	
+	private Dia dia;
+	
+	Produccion(){
+		this.dia = new Dia();
+	}
+	public Dia getDia() {
+		return this.dia;
+	}
+	
+	public void addProductoDia(String nombre, int cantProducida, int indexProducto) {
+		this.dia.addProducto(nombre, cantProducida, indexProducto);
+=======
 	SEMANA1(),
 	SEMANA2(),
 	SEMANA3(),
@@ -21,15 +40,16 @@ public enum Produccion {
 		if(dia >= 0 && dia < this.semana.length) {
 			this.semana[dia].addProducto(nombre, horasProduccion, index);
 		}
+>>>>>>> 366a126ed54db4ab53002c90a4bcf170eb631eb3
 	}
 	
-	public int getProduccionTotal() {
+	public static int getProduccionTotal() {
 		int horasProduccion = 0;
-		for(Dia dia: this.semana) {
-			if(dia != null) {
-				for(Producto pr: dia.getProductos()) {
-					if(pr != null) {
-						horasProduccion += pr.getProduccionDiaria();
+		for(Produccion pr: Produccion.values()) {
+			if(pr != null) {
+				for(Producto pra: pr.getDia().getProductos()) {
+					if(pra != null) {
+						horasProduccion += pra.getProduccionDiaria();
 					}
 				}
 			}
@@ -37,27 +57,21 @@ public enum Produccion {
 		return horasProduccion;
 	}
 	
-	public int getProduccionTotalDia(int dia) {
+	public int getProduccionTotalDia() {
 		int horasProduccion = 0;
-		if(dia >= 0 && dia < this.semana.length) {
-			for(Producto pr: this.semana[dia].getProductos()) {
-				if(pr != null) {
-					horasProduccion += pr.getProduccionDiaria();
-				}
+		for(Producto pra: this.getDia().getProductos()) {
+			if(pra != null) {
+				horasProduccion += pra.getProduccionDiaria();
 			}
 		}
 		return horasProduccion;
 	}
 	
-	public int getProduccionTotalProducto(String nombreProducto) {
+	public static int getProduccionTotalProducto(String nombreProducto) {
 		int horasProduccion = 0;
-		for(Dia dia: this.semana) {
-			if(dia != null) {
-				for(Producto pr: dia.getProductos()) {
-					if(pr != null && pr.getNombre().equals(nombreProducto)) {
-						horasProduccion += pr.getProduccionDiaria();
-					}
-				}
+		for(Produccion pr: Produccion.values()) {
+			if(pr != null && pr.getDia().getProducto(nombreProducto) != null) {
+				horasProduccion += pr.getDia().getProducto(nombreProducto).getProduccionDiaria();
 			}
 		}
 		return horasProduccion;
