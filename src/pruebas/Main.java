@@ -3,16 +3,24 @@ package pruebas;
 public class Main {
 
 	public static void main(String[] args) {
-		String nombre = "Juan Gonz·lez";
-		String apellido = nombre.substring(5);
 		
-		String a = nombre.substring(3,7);
+		int[] numeros = {12,5,20,4,9,68,21,14};
 		
-		System.out.println(nombre);
-		System.out.println(apellido);
-		System.out.println(a);
+		//Para eliminar de un arreglo desde posici√≥n especifica, eliminamos el del index 5, es decir, el numero 68
+		int index = numeros.length-1;
+		int[] temp = new int[numeros.length-1];
+		//Copiamos hasta index-1
+		System.arraycopy(numeros, 0, temp, 0, index);
 		
-		System.out.println(nombre.charAt(6));
+		System.arraycopy(numeros, index+1, temp, index, numeros.length-index-1);
+		
+		
+		
+		
+		for(int n: temp) {
+			System.out.println(n);
+		}
+		
 	}
 
 }
