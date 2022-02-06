@@ -20,15 +20,21 @@ public class Libro {
 		this.editorial = editorial;
 		this.edicion = edicion;
 		this.ejemplares = new Ejemplar[0];
+		this.cantDisponible = 0;
+		this.existencia = true;
 	}
 	
 	public String getTitulo() {
-		return titulo;
+		return this.titulo;
+	}
+	public String getCodigo() {
+		return this.codigo;
 	}
 
 	public void addEjemplar(String codigo) {
 		this.ejemplares = Arrays.copyOf(this.ejemplares, this.ejemplares.length+1);
 		this.ejemplares[this.ejemplares.length-1] = new Ejemplar(codigo);
+		this.cantDisponible++;
 	}
 	
 	public Ejemplar buscarEjemplar() { //Si el ejemplar existe y esta disponible
@@ -50,8 +56,17 @@ public class Libro {
 			System.arraycopy(this.ejemplares, 0, temp, 0, index);
 			System.arraycopy(this.ejemplares, index+1, temp, index, this.ejemplares.length-index-1);
 			this.ejemplares = temp;
+			this.cantDisponible--;
 		}
 		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Libro [titulo=" + titulo + ", codigo=" + codigo + ", autores=" + autores + ", editorial=" + editorial
+				+ ", edicion=" + edicion + ", ejemplares=" + Arrays.toString(ejemplares) + ", cantDisponible="
+				+ cantDisponible + ", existencia=" + existencia + "]";
 	}
 	
 	protected class Ejemplar {

@@ -17,4 +17,8 @@ public class Usuario {
 		return CC;
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", CC=" + CC + ", telefono=" + telefono + ", tipo=" + tipo + "]";
+	}
 }

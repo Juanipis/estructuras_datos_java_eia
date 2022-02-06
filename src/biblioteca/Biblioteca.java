@@ -17,32 +17,34 @@ public class Biblioteca {
 	}
 	
 	public boolean prestamo(String[] datos, String CC) { //Creamos nuevo usuario o buscamos existente
-		if(datos.length !=4) {return false;} //En caso de que entreguen mal los datos
 		/* String[] datos 
 		 * nombreUsuario : 0
 		 * telefonoUsuario : 1
 		 * tipoUsuario : 2
-		 * nombreLibro1: 3
-		 * nombreLibro2 : 4
+		 * codigoLibro1: 3
+		 * codigoLibro2 : 4
 		 * en adelante solo hay libros...
 		 * */
 		Usuario usrPrestamo = this.buscarUsuario(CC);
 		if(usrPrestamo == null) { //Añadimos el nuevo usuario a la lista de usuarios dado que no existe
 			this.usuarios = Arrays.copyOf(this.usuarios, this.usuarios.length+1);
 			this.usuarios[this.usuarios.length-1] = new Usuario(datos[0], CC, datos[1], datos[2]); //Nombre CC telefono tipo
+			usrPrestamo = this.buscarUsuario(CC);
 		}
 		
 		Ejemplar[] ejemplaresPrestar = new Ejemplar[0];
 		for(int i=3; i< datos.length; i++) {
 			Ejemplar prestamoEjemplar = this.buscarLibro(datos[i]);
 			if(prestamoEjemplar != null && prestamoEjemplar.disponible && prestamoEjemplar.existencia) {
+				//Establecemos que los ejemplares no estan disponibles
+				prestamoEjemplar.disponible = false;
 				ejemplaresPrestar = Arrays.copyOf(ejemplaresPrestar, ejemplaresPrestar.length+1);
-				ejemplaresPrestar[this.prestamo.length-1] = prestamoEjemplar;
+				ejemplaresPrestar[ejemplaresPrestar.length-1] = prestamoEjemplar;
 			}
 		}
 		
 		//Comprobamos que se haya podido obtener todos los ejemplares
-		if(datos.length-3 == ejemplaresPrestar.length) {
+		if(ejemplaresPrestar.length>0) {
 			this.prestamo = Arrays.copyOf(this.prestamo, this.prestamo.length+1);
 			this.prestamo[this.prestamo.length-1] = new Prestamo(usrPrestamo, ejemplaresPrestar);
 			return true;
@@ -59,20 +61,27 @@ public class Biblioteca {
 			index++;
 		}
 		if(index < this.prestamo.length && this.prestamo[index] != null && this.prestamo[index].usuario.getCC().equals(CC)) {
+			//hacemos que los ejemplares esten disponibles nuevamente
+			for(Ejemplar ejm : this.prestamo[index].ejemplar) {
+				ejm.disponible = true;
+			}
+			Usuario usrPrestamo = this.prestamo[index].usuario;
 			Prestamo[] temp = new Prestamo[this.prestamo.length-1];
 			System.arraycopy(this.prestamo, 0, temp, 0, index);
 			System.arraycopy(this.prestamo, index+1, temp, index, this.prestamo.length-index-1);
 			this.prestamo = temp;
-			return this.prestamo[index].usuario;
+			
+			
+			return usrPrestamo;
 		}
 		else {
 			return null;
 		}
 	}
 	
-	public Ejemplar buscarLibro(String nombreLibro) {
+	public Ejemplar buscarLibro(String codigoLibro) {
 		for(Libro lr : this.libros) {
-			if(lr != null && lr.getTitulo().equals(nombreLibro)) {
+			if(lr != null && lr.getCodigo().equals(codigoLibro) && lr.buscarEjemplar().disponible) {
 				return lr.buscarEjemplar();
 			}
 		}
@@ -89,16 +98,16 @@ public class Biblioteca {
 	}
 	
 	public void addLibro(String titulo, String codigo, String autores, String editorial, int edicion) {
-		this.libros = Arrays.copyOf(this.libros, this.libros.length);
+		this.libros = Arrays.copyOf(this.libros, this.libros.length+1);
 		this.libros[this.libros.length-1]= new Libro(titulo, codigo, autores, editorial, edicion);
 	}
 	
-	public void eliminarLibro(String nombreLibro) {
+	public void eliminarLibro(String codigoLibro) {
 		int index  = 0;
-		while(index < this.libros.length && this.libros[index] != null && !this.libros[index].getTitulo().equals(nombreLibro)) {
+		while(index < this.libros.length && this.libros[index] != null && !this.libros[index].getCodigo().equals(codigoLibro)) {
 			index++;
 		}
-		if(index < this.libros.length && this.libros[index] != null && this.libros[index].getTitulo().equals(nombreLibro)) {
+		if(index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo().equals(codigoLibro)) {
 			Libro[] temp = new Libro[this.libros.length-1];
 			System.arraycopy(this.libros, 0, temp, 0, index);
 			System.arraycopy(this.libros, index+1, temp, index, this.libros.length-index-1);
@@ -106,18 +115,18 @@ public class Biblioteca {
 		}
 	}
 	
-	public void addEjemplar(String nombreLibro, String codigoEjemplar) {
+	public void addEjemplar(String codigoLibro, String codigoEjemplar) {
 		for(Libro lr: this.libros) {
-			if(lr != null && lr.getTitulo().equals(nombreLibro)) {
+			if(lr != null && lr.getCodigo().equals(codigoLibro)) {
 				lr.addEjemplar(codigoEjemplar);
 				break;
 			}
 		}
 	}
 	
-	public void eliminarEjemplar(String nombreLibro, String codigoEjemplar) {
+	public void eliminarEjemplar(String codigoLibro, String codigoEjemplar) {
 		for(Libro lr: this.libros) {
-			if(lr != null && lr.getTitulo().equals(nombreLibro)) {
+			if(lr != null && lr.getCodigo().equals(codigoLibro)) {
 				lr.eliminarEjemplar(codigoEjemplar);
 				break;
 			}
@@ -133,6 +142,16 @@ public class Biblioteca {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "Biblioteca [libros=" + Arrays.toString(libros) + ", usuarios=" + Arrays.toString(usuarios)
+				+ ", prestamo=" + Arrays.toString(prestamo) + "]";
+	}
+
+
+
+
+
 	private class Prestamo{
 		protected Usuario usuario;
 		protected Ejemplar[] ejemplar;
@@ -146,6 +165,11 @@ public class Biblioteca {
 			//Solo se presta una semana, 7 dias
 			this.fechaDevolucion = new Date(this.fechaPrestamo.getYear(), this.fechaPrestamo.getMonth(), this.fechaPrestamo.getDay()+7, 11, 59, 59);
 			
+		}
+		@Override
+		public String toString() {
+			return "Prestamo [usuario=" + usuario + ", ejemplares=" + Arrays.toString(ejemplar)
+			+ ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion+"]";
 		}
 	}
 }
