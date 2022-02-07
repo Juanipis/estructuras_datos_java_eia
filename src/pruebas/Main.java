@@ -16,7 +16,7 @@ public class Main {
 		
 		
 		
-		
+		//El pc funciona
 		for(int n: temp) {
 			System.out.println(n);
 		}
