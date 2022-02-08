@@ -6,15 +6,13 @@ import java.util.Date;
 public class Cuenta {
 	private String codigo;
 	private Date fechaCreacion;
-	private char tipoCuenta;
 	private double saldo;
 	private double[] depositos;
 	private static int contadorCuentas = 0;
 	
-	public Cuenta(char tipoCuenta, double saldo) {
+	public Cuenta(double saldo) {
 		this.codigo = "" + contadorCuentas++;
 		this.fechaCreacion = new Date();
-		this.tipoCuenta = tipoCuenta;
 		this.saldo = saldo;
 		this.depositos = new double[0];
 	}
@@ -41,10 +39,6 @@ public class Cuenta {
 
 	private void setSaldo(double saldo) {
 		this.saldo = saldo;
-	}
-
-	public char getTipoCuenta() {
-		return tipoCuenta;
 	}
 
 	public String getCodigo() {
