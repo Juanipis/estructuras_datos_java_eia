@@ -5,19 +5,20 @@ package semana2;
 public class Main {
 
 	public static void main(String[] args) {
+
 		Empresa em1 = new Empresa();
 		Mes m1 = new Mes();
 		Mes m2 = new Mes();
 		Proyecto pr1 = new Proyecto(); /*Proyecto 0*/
 		Proyecto pr2 = new Proyecto(); /*Proyecto 1*/
 		
-		/*Añadimos trabajadores*/
+		/*Aï¿½adimos trabajadores*/
 		//*
 		pr1.addTrabajador("Pepe", 99344.912);
 		
 		pr1.addTrabajador("Jhoana", 33123.21);
 		pr1.addTrabajador("Joaquin", 765871.912);
-		pr1.addTrabajador("Mañiño", 78542.6);
+		pr1.addTrabajador("Maï¿½iï¿½o", 78542.6);
 		pr1.addTrabajador("Gabriel", 12344.55);
 		pr1.addTrabajador("Arnoldo", 1023.21);
 		pr1.addTrabajador("AAAmoldo", 1023.21);
@@ -45,13 +46,13 @@ public class Main {
 		System.out.println("**************");
 		
 		
-		/*Establecemos días de los trabajadores*/
+		/*Establecemos dï¿½as de los trabajadores*/
 		///*
 		pr1.setCantDiasTrabajados("Pepe",13);
 		pr1.setCantDiasTrabajados("Arnoldo", 2);
 		pr1.setCantDiasTrabajados("Jhoana", 9);
 		pr1.setCantDiasTrabajados("Joaquin", 20);
-		pr1.setCantDiasTrabajados("Mañiño", 14);
+		pr1.setCantDiasTrabajados("Maï¿½iï¿½o", 14);
 		pr1.setCantDiasTrabajados("Gabriel", 18);
 		
 		pr2.setCantDiasTrabajados("Manuel", 5);
@@ -131,13 +132,13 @@ public class Main {
 		System.out.println("Horas proyecto 2" + pr2.getHorasProyecto());
 		
 		
-		/*Añadimos proyectos al mes*/
+		/*Aï¿½adimos proyectos al mes*/
 		m1.addProyecto(0, pr1);
 		m1.addProyecto(1, pr2);
 		
 		m2.addProyecto(0, pr1);
 		
-		/*Añadimos el mes a la empresa*/
+		/*Aï¿½adimos el mes a la empresa*/
 		em1.addMes(0, m1);
 		em1.addMes(1, m2);
 		
@@ -152,7 +153,7 @@ public class Main {
 		
 		System.out.println("Horas totales trabajadas de la empresa: " + em1.getHorasTotalEmpresa());
 		
-		System.out.println("Trabajador que tiene el salario más pequeño: " + pr1.getSalarioMinTrabajador());
+		System.out.println("Trabajador que tiene el salario mï¿½s pequeï¿½o: " + pr1.getSalarioMinTrabajador());
 
 	}
 

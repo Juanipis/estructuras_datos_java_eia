@@ -12,6 +12,9 @@ public class Libro {
 	private int cantDisponible;
 	private boolean existencia;
 	
+	//Tarea 
+	//Cada libro tiene un codigo aleatorio de 5 digitos
+	//Cada ejemplar tiene el codigo de 5 digitos del libro y otros 5 aleatorios nuevos
 	public Libro(String titulo, String codigo, String autores, String editorial, int edicion) {
 		super();
 		this.titulo = titulo;
@@ -22,6 +25,9 @@ public class Libro {
 		this.ejemplares = new Ejemplar[0];
 		this.cantDisponible = 0;
 		this.existencia = true;
+	}
+	public int getCantDisponible() {
+		return this.cantDisponible;
 	}
 	
 	public String getTitulo() {

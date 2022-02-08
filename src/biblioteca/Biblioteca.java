@@ -79,15 +79,20 @@ public class Biblioteca {
 		}
 	}
 	
-	public Ejemplar buscarLibro(String codigoLibro) {
-		for(Libro lr : this.libros) {
-			if(lr != null && lr.getCodigo().equals(codigoLibro) && lr.buscarEjemplar().disponible) {
-				return lr.buscarEjemplar();
-			}
-		}
-		return null;
+	public Ejemplar buscarLibro(String nombreLibro) {
+		int index=0;
+		while(index < this.libros.length && !this.libros[index].getTitulo().equals(nombreLibro)) index++;		
+		return (this.libros[index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) 
+				? this.libros[index].buscarEjemplar() : null; 
 	}
-	
+	/* otra manera
+	public Ejemplar buscarLibro(String nombreLibro) {
+		int index=0;
+		while(index < this.libros.length && !this.libros[index++].getTitulo().equals(nombreLibro));		
+		return (this.libros[--index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) 
+				? this.libros[index].buscarEjemplar() : null; 
+	}
+	*/
 	public Usuario buscarUsuario(String CC) {
 		for(Usuario usr : this.usuarios) {
 			if(usr != null && usr.getCC().equals(CC)) {
