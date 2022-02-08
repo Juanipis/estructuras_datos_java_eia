@@ -1,5 +1,7 @@
 package pruebas;
 
+import java.util.Date;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -20,6 +22,11 @@ public class Main {
 		for(int n: temp) {
 			System.out.println(n);
 		}
+		
+		Date dia = new Date();
+		Date dia2 = new Date(dia.getYear(), dia.getMonth(), dia.getDay()+90);
+		System.out.println(dia);
+		System.out.println(dia2);
 		
 	}
 
