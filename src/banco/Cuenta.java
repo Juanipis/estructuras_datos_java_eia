@@ -37,7 +37,7 @@ public class Cuenta {
 		return saldo;
 	}
 
-	private void setSaldo(double saldo) {
+	protected void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
@@ -48,4 +48,20 @@ public class Cuenta {
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
+	
+	protected double[] getDepositos() {
+		return this.depositos;
+	}
+	
+	public void setIntereses() {
+		//Por defecto hacemos el de cuenta corriente
+		this.setSaldo((this.getSaldo()*3)/100 + this.getSaldo());
+	}
+
+	@Override
+	public String toString() {
+		return "Cuenta [codigo=" + codigo + ", saldo=" + saldo + "]";
+	}
+	
+	
 }

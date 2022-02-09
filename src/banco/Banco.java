@@ -56,6 +56,33 @@ public class Banco {
 		while(index < this.clientes.length && this.clientes[index] != null && !this.clientes[index].getCuenta().getCodigo().equals(nCuenta)) index++;
 		return (index < this.clientes.length && this.clientes[index] != null && this.clientes[index].getCuenta().getCodigo().equals(nCuenta)) ? this.clientes[index].getCuenta() : null;
 	}
+	
+	public void hacerInteresesMes() {
+		for(Cliente cl : this.clientes) {
+			if(cl != null) {
+				cl.getCuenta().setIntereses();
+			}
+		}
+	}
+	
+	public String reporteCuenta(String CC) {
+		Cliente cl = this.buscarCliente(CC);
+		if(cl != null) {
+			String tipoCuenta= "";
+			if(cl.getCuenta() instanceof CuentaCorriente ) {tipoCuenta = "Corriente";}
+			else if(cl.getCuenta() instanceof CuentaEspecial ) {tipoCuenta = "Especial";}
+			StringBuilder bl = new StringBuilder();
+			bl.append("Nombre: " + cl.getNombre() + " " + cl.getApellidos() + "\n");
+			bl.append("#Cuenta : " + cl.getCuenta().getCodigo() + " | Tipo : " + tipoCuenta + "\n");
+			bl.append("Saldo : " + cl.getCuenta().getSaldo() + "\n");
+			bl.append("Depositos : " + Arrays.toString(cl.getCuenta().getDepositos()));
+			return bl.toString();
+		}
+		else {
+			return null;
+		}
+		
+	}
 
 	@Override
 	public String toString() {

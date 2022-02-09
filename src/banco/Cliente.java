@@ -23,7 +23,13 @@ public class Cliente {
 		switch (tipoCuenta) {
 		case 'C': {
 			this.cuenta = new CuentaCorriente(saldo);
+			break;
 		}
+		case 'E': {
+			this.cuenta = new CuentaEspecial(saldo);
+			break;
+		}
+		
 		default: //Cuenta defecto
 			this.cuenta = new Cuenta(saldo);
 			
@@ -49,6 +55,13 @@ public class Cliente {
 	
 	public Cuenta getCuenta() {
 		return this.cuenta;
+	}
+	
+	public String getNombre() {
+		return this.nombre;
+	}
+	public String getApellidos() {
+		return this.apellidos;
 	}
 
 	@Override
