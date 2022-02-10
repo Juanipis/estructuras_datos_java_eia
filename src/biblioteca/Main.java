@@ -14,15 +14,15 @@ public class Main {
 		System.out.println(biblioteca); 
 		
 		//Eliminamos un libro
-		biblioteca.eliminarLibro("SA1");
+		biblioteca.eliminarLibro("El señor de los anillos");
 		System.out.println(biblioteca);	
 		
 		//Añadir ejemplar
-		biblioteca.addEjemplar("OS1", "GHJ12");
-		biblioteca.addEjemplar("OS1", "AJQ21");
-		biblioteca.addEjemplar("CM1", "BS121");
-		biblioteca.addEjemplar("CM1", "AS221");
-		biblioteca.addEjemplar("CM1", "YUI11");
+		biblioteca.addEjemplar("El olvido que seremos");
+		biblioteca.addEjemplar("El olvido que seremos");
+		biblioteca.addEjemplar("La cuchara menguante");
+		biblioteca.addEjemplar("La cuchara menguante");
+		biblioteca.addEjemplar("La cuchara menguante");
 		System.out.println(biblioteca);
 		
 		//Eliminar ejemplar
@@ -30,7 +30,7 @@ public class Main {
 		System.out.println(biblioteca);
 		
 		//Hacer prestamo
-		String[] prestamo = {"Juan Pablo", "30012452", "Estudiante", "OS1", "CM1", "CM1"}; 
+		String[] prestamo = {"Juan Pablo", "30012452", "Estudiante", "El olvido que seremos", "La cuchara menguante", "La cuchara menguante"}; 
 		biblioteca.prestamo(prestamo, "1000826125");
 		System.out.println(biblioteca);
 		

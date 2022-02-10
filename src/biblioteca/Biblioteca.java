@@ -2,6 +2,7 @@ package biblioteca;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Random;
 
 import biblioteca.Libro.Ejemplar;
 
@@ -9,6 +10,8 @@ public class Biblioteca {
 	private Libro[] libros;
 	private Usuario[] usuarios;
 	private Prestamo[] prestamo;
+	private Random rnd = new Random();
+	private char[] codigoGenerador = "0123456789ABCDEFGHIJKLNMOPQRSTUVWXYZ".toCharArray();
 	
 	public Biblioteca() {
 		this.libros = new Libro[0];
@@ -21,8 +24,8 @@ public class Biblioteca {
 		 * nombreUsuario : 0
 		 * telefonoUsuario : 1
 		 * tipoUsuario : 2
-		 * codigoLibro1: 3
-		 * codigoLibro2 : 4
+		 * nombreLibro: 3
+		 * nombreLibro2 : 4
 		 * en adelante solo hay libros...
 		 * */
 		Usuario usrPrestamo = this.buscarUsuario(CC);
@@ -82,9 +85,16 @@ public class Biblioteca {
 	public Ejemplar buscarLibro(String nombreLibro) {
 		int index=0;
 		while(index < this.libros.length && !this.libros[index].getTitulo().equals(nombreLibro)) index++;		
-		return (this.libros[index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) 
+		return (index < this.libros.length  && this.libros[index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) 
 				? this.libros[index].buscarEjemplar() : null; 
 	}
+	
+	public boolean libroExiste(String codigoLibro) {
+		int index=0;
+		while(index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo() != codigoLibro) index++;		
+		return (index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo() == codigoLibro) ? true : false; 
+	}
+	
 	/* otra manera
 	public Ejemplar buscarLibro(String nombreLibro) {
 		int index=0;
@@ -104,15 +114,15 @@ public class Biblioteca {
 	
 	public void addLibro(String titulo, String codigo, String autores, String editorial, int edicion) {
 		this.libros = Arrays.copyOf(this.libros, this.libros.length+1);
-		this.libros[this.libros.length-1]= new Libro(titulo, codigo, autores, editorial, edicion);
+		this.libros[this.libros.length-1]= new Libro(titulo, this.codigoLibro(), autores, editorial, edicion);
 	}
 	
-	public void eliminarLibro(String codigoLibro) {
+	public void eliminarLibro(String nombreLibro) {
 		int index  = 0;
-		while(index < this.libros.length && this.libros[index] != null && !this.libros[index].getCodigo().equals(codigoLibro)) {
+		while(index < this.libros.length && this.libros[index] != null && !this.libros[index].getTitulo().equalsIgnoreCase(nombreLibro)) {
 			index++;
 		}
-		if(index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo().equals(codigoLibro)) {
+		if(index < this.libros.length && this.libros[index] != null && this.libros[index].getTitulo().equalsIgnoreCase(nombreLibro)) {
 			Libro[] temp = new Libro[this.libros.length-1];
 			System.arraycopy(this.libros, 0, temp, 0, index);
 			System.arraycopy(this.libros, index+1, temp, index, this.libros.length-index-1);
@@ -120,10 +130,10 @@ public class Biblioteca {
 		}
 	}
 	
-	public void addEjemplar(String codigoLibro, String codigoEjemplar) {
+	public void addEjemplar(String nombreLibro) {
 		for(Libro lr: this.libros) {
-			if(lr != null && lr.getCodigo().equals(codigoLibro)) {
-				lr.addEjemplar(codigoEjemplar);
+			if(lr != null && lr.getTitulo().equalsIgnoreCase(nombreLibro)) {
+				lr.addEjemplar();
 				break;
 			}
 		}
@@ -143,7 +153,20 @@ public class Biblioteca {
 		//¿Qué diablos se hace aquí?
 	}
 	
-	
+	public String codigoLibro() {
+		StringBuilder bld = new StringBuilder();
+		
+		for(int i = 1; i<=5; i++) {
+			bld.append(this.codigoGenerador[this.rnd.nextInt(this.codigoGenerador.length)]);
+		}
+		
+		if(!this.libroExiste(bld.toString())) {
+			return bld.toString();
+		}
+		else {
+			return this.codigoLibro();
+		}
+	}
 	
 	
 	

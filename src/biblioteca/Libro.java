@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Libro {
 	private String titulo;
@@ -11,7 +12,8 @@ public class Libro {
 	private Ejemplar[] ejemplares;
 	private int cantDisponible;
 	private boolean existencia;
-	
+	private Random rnd = new Random();
+	private char[] codigoGenerador = "0123456789ABCDEFGHIJKLNMOPQRSTUVWXYZ".toCharArray();
 	
 	//Tarea 
 	//Cada libro tiene un codigo aleatorio de 5 digitos
@@ -19,13 +21,15 @@ public class Libro {
 	public Libro(String titulo, String codigo, String autores, String editorial, int edicion) {
 		super();
 		this.titulo = titulo;
-		this.codigo = codigo;
 		this.autores = autores;
 		this.editorial = editorial;
 		this.edicion = edicion;
 		this.ejemplares = new Ejemplar[0];
 		this.cantDisponible = 0;
 		this.existencia = true;
+		this.codigo = codigo;
+		
+		
 	}
 	public int getCantDisponible() {
 		return this.cantDisponible;
@@ -38,9 +42,9 @@ public class Libro {
 		return this.codigo;
 	}
 
-	public void addEjemplar(String codigo) {
+	public void addEjemplar() {
 		this.ejemplares = Arrays.copyOf(this.ejemplares, this.ejemplares.length+1);
-		this.ejemplares[this.ejemplares.length-1] = new Ejemplar(codigo);
+		this.ejemplares[this.ejemplares.length-1] = new Ejemplar(this.codigoLibro());
 		this.cantDisponible++;
 	}
 	
@@ -68,6 +72,21 @@ public class Libro {
 		
 	}
 	
+	public boolean codigoExiste(String codigoLibro) {
+		int index=0;
+		while(index < this.ejemplares.length && this.ejemplares[index] != null && this.ejemplares[index].codigo != codigoLibro) index++;		
+		return (index < this.ejemplares.length && this.ejemplares[index] != null && this.ejemplares[index].codigo == codigoLibro) ? true : false; 
+	}
+	
+	public String codigoLibro() {
+		StringBuilder bld = new StringBuilder();
+		for(int i = 1; i<=5; i++) {
+			bld.append(this.codigoGenerador[this.rnd.nextInt(this.codigoGenerador.length)]);
+		}
+		return (!this.codigoExiste(this.codigo + bld.toString())) ?   this.codigo + bld.toString() : this.codigoLibro();
+		
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -81,8 +100,8 @@ public class Libro {
 		protected boolean disponible;
 		protected boolean existencia;
 		
-		public Ejemplar(String codigo) {
-			this.codigo = codigo;
+		public Ejemplar(String codigoLibro) {
+			this.codigo = codigoLibro;
 			this.disponible = true;
 			this.existencia = true;
 		}
