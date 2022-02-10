@@ -91,7 +91,7 @@ public class Biblioteca {
 	
 	public boolean libroExiste(String codigoLibro) {
 		int index=0;
-		while(index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo() != codigoLibro) index++;		
+		while(index < this.libros.length && this.libros[index] != null && !this.libros[index].getCodigo().equals(codigoLibro)) index++;		
 		return (index < this.libros.length && this.libros[index] != null && this.libros[index].getCodigo() == codigoLibro) ? true : false; 
 	}
 	
@@ -160,12 +160,8 @@ public class Biblioteca {
 			bld.append(this.codigoGenerador[this.rnd.nextInt(this.codigoGenerador.length)]);
 		}
 		
-		if(!this.libroExiste(bld.toString())) {
-			return bld.toString();
-		}
-		else {
-			return this.codigoLibro();
-		}
+		return (!this.libroExiste(bld.toString())) ? bld.toString(): this.codigoLibro();
+		
 	}
 	
 	

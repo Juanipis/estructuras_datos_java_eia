@@ -65,6 +65,17 @@ public class Banco {
 		}
 	}
 	
+	public CuentaEspecial[] cantCuentasEpeciales() {
+		CuentaEspecial[] arr = new CuentaEspecial[0];
+		for(Cliente cl : this.clientes) {
+			if(cl!= null && cl.getCuenta() instanceof CuentaEspecial) {
+				arr = Arrays.copyOf(arr, arr.length+1);
+				arr[arr.length-1] = (CuentaEspecial) cl.getCuenta();
+			}
+		}
+		return arr;
+	}
+	
 	public String reporteCuenta(String CC) {
 		Cliente cl = this.buscarCliente(CC);
 		if(cl != null) {
