@@ -41,6 +41,13 @@ public class Main {
 		biblioteca.devolucion("1000826125");
 		System.out.println(biblioteca);
 		
+		//Buscamos libro
+		try {
+			System.out.println(biblioteca.buscarLibroExcepcion("La cucharar menguante"));
+		} catch (NoExisteLibro e) {
+			System.out.println(e.getMessage());
+		}
+		
 		
 	}
 

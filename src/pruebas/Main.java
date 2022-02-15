@@ -28,6 +28,8 @@ public class Main {
 		System.out.println(dia);
 		System.out.println(dia2);
 		
+		System.out.println(Factorial.factorial(4));
+		
 	}
 
 }

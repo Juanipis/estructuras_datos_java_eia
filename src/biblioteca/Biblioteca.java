@@ -13,6 +13,8 @@ public class Biblioteca {
 	private Random rnd = new Random();
 	private char[] codigoGenerador = "0123456789ABCDEFGHIJKLNMOPQRSTUVWXYZ".toCharArray();
 	
+	private NoExisteLibro errNoExiste = new NoExisteLibro();
+	
 	public Biblioteca() {
 		this.libros = new Libro[0];
 		this.usuarios = new Usuario[0];
@@ -88,6 +90,18 @@ public class Biblioteca {
 		return (index < this.libros.length  && this.libros[index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) 
 				? this.libros[index].buscarEjemplar() : null; 
 	}
+	
+	public Ejemplar buscarLibroExcepcion(String nombreLibro) throws NoExisteLibro {
+		int index=0;
+		while(index < this.libros.length && !this.libros[index].getTitulo().equals(nombreLibro)) index++;	
+		if(index < this.libros.length  && this.libros[index] != null && this.libros[index].getCantDisponible() >0 && this.libros[index].buscarEjemplar().disponible) {
+			return this.libros[index].buscarEjemplar();
+		}
+		else {
+			throw errNoExiste;
+		}
+	}
+	
 	
 	public boolean libroExiste(String codigoLibro) {
 		int index=0;
@@ -174,7 +188,7 @@ public class Biblioteca {
 
 
 
-
+	
 
 	private class Prestamo{
 		protected Usuario usuario;
@@ -195,5 +209,11 @@ public class Biblioteca {
 			return "Prestamo [usuario=" + usuario + ", ejemplares=" + Arrays.toString(ejemplar)
 			+ ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion+"]";
 		}
+	}
+}
+
+class NoExisteLibro extends Exception{
+	public NoExisteLibro() {
+		super("No existe el libro buscado");
 	}
 }
