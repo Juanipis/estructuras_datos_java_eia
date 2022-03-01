@@ -48,6 +48,8 @@ public class Algoritmos {
 	int index = 0;
 	int handler = 1;
 	int sumaSecuencial = a[0];
+	int sumMax = 0;
+	int sumActual = 0;
 	while(index< a.length) {
 		if(handler < a.length) {
 			sumaSecuencial += a[handler];
@@ -73,5 +75,5 @@ public class Algoritmos {
 	return (max>0) ? max:0;
 	
  }
- 
+}
 
