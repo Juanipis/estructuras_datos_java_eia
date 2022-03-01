@@ -60,6 +60,77 @@ public class Metodos {
 			return Math.max(arr[n], Metodos.mayorArreglo(arr, n+1));
 		}
 	}
+	
+	public static boolean comprobarPalindromo(String frase) throws ArregloVacio {
+		if(frase.length() == 0) {
+			throw new ArregloVacio();
+		} else if(frase.length() == 1) {
+			return true;
+		}else {
+			return Metodos.comprobarPalindromo(frase.toLowerCase().toCharArray(), 0, frase.length()-1);
+		}
+	}
+	
+	private static boolean comprobarPalindromo(char[] arr, int a, int b) { //a menor, b mayor
+		if(b-a == 0 || b-a ==1) {
+			return arr[a]==arr[b];
+		}else {
+			return arr[a]==arr[b] && Metodos.comprobarPalindromo(arr, a+1, b-1);
+		}
+	}
+	
+	public static boolean comprobarParImpar(int numero) throws NumeroCero {
+		if(numero == 0) {
+			throw new NumeroCero();
+		}else {
+			numero = (numero < 0) ? numero*-1:numero;
+			return Metodos.comprobarParImparPos(0, numero);
+		}
+	}
+	private static boolean comprobarParImparPos(int sumatoria, int numero) {
+		if(numero-sumatoria == 0) {
+			return true;
+		}else if(numero-sumatoria == 1) {
+			return false;
+		}else {
+			return Metodos.comprobarParImparPos(sumatoria+2, numero);
+		}
+	}
+	
+	public static String reversoCadena(String cadena) throws ArregloVacio {
+		if(cadena.length() == 0) {
+			throw new ArregloVacio();
+		}
+		else if(cadena.length() == 1) {
+			return cadena;
+		}
+		else {
+			return Metodos.reversoCadenaPos(cadena, cadena.length()-1);
+		}
+	}
+	
+	private static String reversoCadenaPos(String cadena, int pos) {
+		if(pos == 0) {
+			return cadena.charAt(pos)+"";
+		}else {
+			return cadena.charAt(pos)+Metodos.reversoCadenaPos(cadena, pos-1);
+		}
+	}
+	
+	public static int Recursivo(int[] V, int i1, int i2) {
+		int aux1, aux2;
+		if(i1==i2) {
+			return V[i1];
+		}else {
+			aux1 = Metodos.Recursivo(V, i1, (i1+i2)/2);
+			aux2 = Metodos.Recursivo(V, ((i1+i2)/2)+1, i2);
+			if(aux1>aux2) {
+				return aux1;
+			}else {
+				return aux2;
+			}
+		}
+	}
 }
 class NumeroNegativo extends Exception{
 	public NumeroNegativo(long num) {
@@ -69,5 +140,10 @@ class NumeroNegativo extends Exception{
 class ArregloVacio extends Exception{
 	public ArregloVacio() {
 		super("El arreglo no tiene elementos");
+	}
+}
+class NumeroCero extends Exception{
+	public NumeroCero() {
+		super("No se puede hacer la operacion con el cero");
 	}
 }
