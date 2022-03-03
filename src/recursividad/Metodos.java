@@ -44,6 +44,42 @@ public class Metodos {
 			return arreglo[pos]+ Metodos.sumaArrego(arreglo, pos+1);
 		}
 	}
+	
+	public static long fibonacciIter(long n) {
+		long anterior = 0;
+		long actual = 1;
+		for (int i = 1; i < n; i++) {
+			actual+=anterior;
+			anterior=actual-anterior;
+		}
+		return actual;
+	}
+	
+	public static long fibonacciRecursivo(long n) {
+		if(n == 1 || n==0) {
+			return n;
+		}else {
+			return fibonacciRecursivo(n-1)+fibonacciRecursivo(n-2);
+		}
+	}
+	
+	
+	public static int sumaArregloDivideVeceras(int[] arreglo) throws ArregloVacio {
+		if(arreglo == null || arreglo.length == 0) {
+			throw new ArregloVacio();
+		}else {
+			return Metodos.sumaArregloDivideVeceras(arreglo, 0, arreglo.length-1);
+		}
+		
+	}
+	
+	private static int sumaArregloDivideVeceras(int[] arreglo, int i1, int i2) {
+		if(i1==i2) {
+			return arreglo[i1];
+		}else {
+			return Metodos.sumaArregloDivideVeceras(arreglo, i1, (i1+i2)/2)+Metodos.sumaArregloDivideVeceras(arreglo, (i1+i2)/2+1, i2); 
+		}
+	}
 	public static int mayorArreglo(int[] arr) throws ArregloVacio {
 		if(arr.length == 0) {
 			throw new ArregloVacio();
@@ -62,7 +98,10 @@ public class Metodos {
 	}
 	
 	public static boolean comprobarPalindromo(String frase) throws ArregloVacio {
-		if(frase.length() == 0) {
+		if(frase == null) {
+			throw new ArregloVacio();
+		}
+		else if(frase.length() == 0) {
 			throw new ArregloVacio();
 		} else if(frase.length() == 1) {
 			return true;
@@ -98,7 +137,12 @@ public class Metodos {
 	}
 	
 	public static String reversoCadena(String cadena) throws ArregloVacio {
-		if(cadena.length() == 0) {
+		
+		if(cadena == null) {
+			throw new ArregloVacio();
+		}
+		
+		else if(cadena.length() == 0) {
 			throw new ArregloVacio();
 		}
 		else if(cadena.length() == 1) {
@@ -131,6 +175,8 @@ public class Metodos {
 			}
 		}
 	}
+	
+	
 }
 class NumeroNegativo extends Exception{
 	public NumeroNegativo(long num) {

@@ -6,6 +6,23 @@ public class Main {
 		int[] V = {3,6,-10,9999,1,12,25};
 		System.out.println(Metodos.Recursivo(V, 0, 4));
 		
+		int[] arr = {1,2,3,4,5};
+		try {
+			System.out.println(Metodos.sumaArregloDivideVeceras(arr));
+		} catch (ArregloVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		long time_start = System.currentTimeMillis();
+		System.out.println(Metodos.fibonacciIter(10));
+		long time_end = System.currentTimeMillis();
+		System.out.println("Iterativo: Tiempo usado = " + (time_end-time_start));
+		
+		time_start = System.currentTimeMillis();
+		System.out.println(Metodos.fibonacciRecursivo(10));
+		time_end = System.currentTimeMillis();
+		System.out.println("Recursivo: Tiempo usado = ");
+		System.out.println(time_end-time_start);
 		/*
 		try {
 			System.out.println(Metodos.reversoCadena(""));
@@ -24,7 +41,7 @@ public class Main {
 		*/
 		
 		/*
-		String frase = "";
+		String frase = "somos somos";
 		try {
 			System.out.println(Metodos.comprobarPalindromo(frase));
 		} catch (ArregloVacio e) {
