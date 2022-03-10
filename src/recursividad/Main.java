@@ -2,7 +2,7 @@ package recursividad;
 
 public class Main {
 	public static void main(String [] args) {
-		//Obtiene el mayor numero entre
+		//Obtiene el mayor numero en porciones de arreglo indicado con i1 e i2
 		int[] V = {3,6,-10,9999,1,12,25};
 		System.out.println(Metodos.Recursivo(V, 0, 4));
 		

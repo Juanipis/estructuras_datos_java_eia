@@ -1,35 +1,24 @@
 package pruebas;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		int[] numeros = {12,5,20,4,9,68,21,14};
-		
-		//Para eliminar de un arreglo desde posición especifica, eliminamos el del index 5, es decir, el numero 68
-		int index = numeros.length-1;
-		int[] temp = new int[numeros.length-1];
-		//Copiamos hasta index-1
-		System.arraycopy(numeros, 0, temp, 0, index);
-		
-		System.arraycopy(numeros, index+1, temp, index, numeros.length-index-1);
-		
-		
-		
-		//El pc funciona
-		for(int n: temp) {
-			System.out.println(n);
-		}
-		
-		Date dia = new Date();
-		Date dia2 = new Date(dia.getYear(), dia.getMonth(), dia.getDay()+90);
-		System.out.println(dia);
-		System.out.println(dia2);
-		
-		System.out.println(Factorial.factorial(4));
-		
+		String[] array = {"a", "b", "c", "d", "e"};
+		ArrayList<String> arr = new ArrayList<>(Arrays.asList(array));
+		arr.remove(2);
+		System.out.println(arr);
+	      //Method 1
 	}
 
 }
