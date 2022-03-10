@@ -1,9 +1,9 @@
 package torresHanoi;
 
 public class Hanoi {
-	private int[] fila1;
-	private int[] fila2;
-	private int[] fila3;
+	public int[] fila1;
+	public int[] fila2;
+	public int[] fila3;
 	
 	public Hanoi(int discos) {
 		fila1 = new int[discos];
@@ -20,23 +20,22 @@ public class Hanoi {
 	 * 4. Ir a la primera torre, mover disco n a la derecha
 	 * 5. Completar disco n
 	 * 6. ...
-	 * 
+	 * , 
 	 */
 	public void resolver() {
 		this.moverDiscoProximaTorre(1);
+		this.moverDiscoProximaTorre(2);
 		this.moverDiscoProximaTorre(1);
-
-		while(!this.resuelto()) {
-			if(fila3[this.discoBaseIndexPrimer(3)] == 1) {
-				System.out.println("aquí");
-				this.buscarDiscoTorreCompletar(this.discoBaseIndexPrimer(2), 2);
-			}
-			else if(fila2[this.discoBaseIndexPrimer(2)] == 1) {
-				
-				this.buscarDiscoTorreCompletar(this.discoBaseIndexPrimer(3), 3);
-			}
-			
-		}
+		
+		if(this.buscarDiscoTorreCompletar(fila3[this.discoBaseIndexPrimer(3)], 3)) {}
+		else {this.buscarDiscoTorreCompletar(fila2[this.discoBaseIndexPrimer(2)], 2);}
+		/*
+		if(this.buscarDiscoTorreCompletar(fila2[this.discoBaseIndexPrimer(2)], 2)) {}
+		else {this.buscarDiscoTorreCompletar(fila3[this.discoBaseIndexPrimer(3)], 3);}
+		*/
+		
+		
+		
 	}
 	
 	public int discoBaseIndexPrimer(int torre) {
@@ -117,7 +116,7 @@ public class Hanoi {
 			throw new IllegalArgumentException("Unexpected value: " + numeroTorre);
 		}
 	}
-	/*
+	
 	public void setFila1(int[] arr) {
 		fila1 = arr;
 	}
@@ -129,7 +128,7 @@ public class Hanoi {
 	public void setFila3(int[] arr) {
 		fila3 = arr;
 	}
-	*/
+	
 	public boolean buscarDiscoTorreCompletar(int discoBase, int numeroTorre) {
 		switch (numeroTorre) {
 		case 1: {

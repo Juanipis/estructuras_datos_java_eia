@@ -1,8 +1,18 @@
 package recursividad;
 
+import java.util.Arrays;
+
 public class Main {
 	public static void main(String [] args) {
+		//System.out.println(Metodos.fibonacciFast3(999));
+		
+		int[] arreglo = Metodos.arrPares(new int[] {1,2,3,4,5,6,7,8});
+		System.out.println(Arrays.toString(arreglo));
+		
 		//Obtiene el mayor numero en porciones de arreglo indicado con i1 e i2
+		
+		
+		/*
 		int[] V = {3,6,-10,9999,1,12,25};
 		System.out.println(Metodos.Recursivo(V, 0, 4));
 		

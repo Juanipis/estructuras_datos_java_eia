@@ -1,5 +1,10 @@
 package recursividad;
 
+import java.math.BigInteger;
+import java.util.Arrays;
+
+import semana2.Trabajador;
+
 public class Metodos {
 	public static long factorial(long n) throws NumeroNegativo {
 		if(n<0) {
@@ -176,7 +181,90 @@ public class Metodos {
 		}
 	}
 	
+	public static long fibonacciFast2(int n) {
+		int actual=(n==0) ?0:1;
+		return fibonacciFastR2(n,0,actual);
+	}
 	
+	public static long fibonacciFastR2(int n, long anterior, long actual) {
+		if(n<=1) {
+			return actual;
+		}
+		return fibonacciFastR2(n-1, actual, actual+anterior);
+	}
+	
+	public static BigInteger fibonacciFast3(int n) {
+		int actual=(n==0) ?0:1;
+		return fibonacciFastR3(n,new BigInteger("0"),new BigInteger(Integer.toString(actual)));
+	}
+	
+	public static BigInteger fibonacciFastR3(int n, BigInteger anterior, BigInteger actual) {
+		if(n<=1) {
+			return actual;
+		}
+		return fibonacciFastR3(n-1, actual, new BigInteger(actual.toString()).add(anterior));
+	}
+	
+	/*
+	public static int[] arregloPares(int [] arr) {
+		if(arr.length == 1) {
+			if(arr[0]%2 ==0) {
+				return new int[] {arr[0]};
+			}else {
+				return new int[0];
+			}
+		}else {
+			if(arr[0]%2 ==0) {
+				int[] arrT = arregloPares(Metodos.reduccion(0, arr));
+				int[] arrPares = new int[arrT.length+1];
+				arrPares[0]= arr[0];
+				for(int i =1; i<arrT.length; i++) {
+					arrPares[i] = arrT[i-1];
+				}
+				return arrPares;
+			}else {
+				return arregloPares(Metodos.reduccion(0, arr));
+			}
+		}
+	}*/
+	
+	public static int[] arrPares(int[] arr) {
+		return(Metodos.arregloPares(0, arr, new int[0]));
+	}
+	
+	public static int[] arregloPares(int n, int[] arr, int[] pares) {
+		if(n == arr.length-1) {
+			if(arr[n]%2 == 0) {
+				pares = Arrays.copyOf(pares, pares.length+1);
+				pares[pares.length-1] = arr[n];
+				
+			}
+			return pares;
+		}
+		else {
+			if(n< arr.length && arr[n]%2 == 0) {
+				pares = Arrays.copyOf(pares, pares.length+1);
+				pares[pares.length-1] = arr[n];
+			}
+			return arregloPares(n+1, arr, pares);
+		}
+	}
+	
+	public static int[] reduccion(int index, int[] arr) {
+		int[] temp = new int[arr.length-1];
+		int arT = 0;
+		int arO = 0;
+		
+		while(arT < temp.length) {
+			if(arT == index) {
+				arO++;
+			}
+			temp[arT] = arr[arO];
+			arT++;
+			arO++;
+		}
+		return temp;
+	}
 }
 class NumeroNegativo extends Exception{
 	public NumeroNegativo(long num) {
