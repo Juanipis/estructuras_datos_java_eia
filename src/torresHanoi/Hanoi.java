@@ -22,8 +22,50 @@ public class Hanoi {
 	 * 6. ...
 	 * 
 	 */
+	public void resolver() {
+		this.moverDiscoProximaTorre(1);
+		this.moverDiscoProximaTorre(1);
+
+		while(!this.resuelto()) {
+			if(fila3[this.discoBaseIndexPrimer(3)] == 1) {
+				System.out.println("aquí");
+				this.buscarDiscoTorreCompletar(this.discoBaseIndexPrimer(2), 2);
+			}
+			else if(fila2[this.discoBaseIndexPrimer(2)] == 1) {
+				
+				this.buscarDiscoTorreCompletar(this.discoBaseIndexPrimer(3), 3);
+			}
+			
+		}
+	}
 	
-	
+	public int discoBaseIndexPrimer(int torre) {
+		switch (torre) {
+		case 1:{
+			int index = 0;
+			while(index < fila1.length-1 && fila1[index] == 0) { //Encontrar el lugar donde hayan discos
+				index++;
+			}
+			return index;
+		}
+		case 2: {
+			int index = 0;
+			while(index < fila2.length-1 && fila2[index] == 0) { //Encontrar el lugar donde hayan discos
+				index++;
+			}
+			return index;	
+		}case 3:{
+			int index = 0;
+			while(index < fila3.length-1 && fila3[index] == 0) { //Encontrar el lugar donde hayan discos
+				index++;
+			}
+			return index;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + torre);
+		}
+		
+	}
 	
 	public boolean torreLista(int discoBase, int numeroTorre) {
 		switch (numeroTorre) {
@@ -88,6 +130,70 @@ public class Hanoi {
 		fila3 = arr;
 	}
 	*/
+	public boolean buscarDiscoTorreCompletar(int discoBase, int numeroTorre) {
+		switch (numeroTorre) {
+		case 1: {
+			while(!this.discoEncima(discoBase, numeroTorre)) {
+				if(this.moverDiscoProximaTorre(2)) {} // Movemos a torre 2
+				else {this.moverDiscoProximaTorre(3);} // Movemos a torre 3
+			}
+			if(discoBase-1 >1 && !this.discoEncima(discoBase-1, numeroTorre)) {
+				this.buscarDiscoTorreCompletar(discoBase-1, numeroTorre);
+			}
+			
+		}case 2: {
+			while(!this.discoEncima(discoBase, numeroTorre)) {
+				if(this.moverDiscoProximaTorre(3)) {} // Movemos a torre 3
+				else {this.moverDiscoProximaTorre(1);} // Movemos a torre 1
+			}
+			if(discoBase-1 >1 && !this.discoEncima(discoBase-1, numeroTorre)) {
+				this.buscarDiscoTorreCompletar(discoBase-1, numeroTorre);
+			}
+			return true;
+		}case 3: {
+			while(!this.discoEncima(discoBase, numeroTorre)) {
+				if(this.moverDiscoProximaTorre(1)) {} // Movemos a torre 1
+				else {this.moverDiscoProximaTorre(2);} // Movemos a torre 1
+			}
+			if(discoBase-1 >1 && !this.discoEncima(discoBase-1, numeroTorre)) {
+				this.buscarDiscoTorreCompletar(discoBase-1, numeroTorre);
+			}
+			return true;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + numeroTorre);
+		}
+	}
+	
+	public boolean discoEncima(int discoBase, int numeroTorre) {
+		switch (numeroTorre) {
+		case 1: {
+			int indexDiscoEncima = this.buscarIndexDiscoTorre(discoBase, numeroTorre)-1;
+			if(indexDiscoEncima < fila1.length && indexDiscoEncima>=0 && fila1[indexDiscoEncima] == discoBase-1) {
+				return true;
+			}else {
+				return false;
+			}
+		}case 2: {
+			int indexDiscoEncima = this.buscarIndexDiscoTorre(discoBase, numeroTorre)-1;
+			if(indexDiscoEncima < fila2.length && indexDiscoEncima>=0 && fila2[indexDiscoEncima] == discoBase-1) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		}case 3:{
+			int indexDiscoEncima = this.buscarIndexDiscoTorre(discoBase, numeroTorre)-1;
+			if(indexDiscoEncima < fila3.length && indexDiscoEncima>=0 && fila3[indexDiscoEncima] == discoBase-1) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + 1);
+		}
+	}
 	
 	public boolean moverDiscoProximaTorre(int numTorre) {
 		switch (numTorre) {
@@ -118,7 +224,7 @@ public class Hanoi {
 				return true;
 			}else if(moverDiscoTorre1(fila2[indexDisco])) { //intentemos moverlo a la primera torre
 				fila2[indexDisco] = 0;
-				this.ImpresionPaso();
+				this.ImpresionPaso(); 
 				return true;
 			}else {
 				return false;
@@ -147,6 +253,9 @@ public class Hanoi {
 	}
 	
 	public boolean moverDiscoTorre1(int disco) {
+		if(disco == 0) {
+			return false;
+		}
 		int index = 0;
 		while(index < fila1.length-1 && fila1[index] == 0) { //Encontrar el lugar donde hayan discos
 			index++;
@@ -168,6 +277,9 @@ public class Hanoi {
 	
 	
 	public boolean moverDiscoTorre2(int disco) {
+		if(disco == 0) {
+			return false;
+		}
 		int index = 0;
 		while(index < fila2.length-1 && fila2[index] == 0) { //Encontrar el lugar donde hayan discos
 			index++;
@@ -188,6 +300,9 @@ public class Hanoi {
 	}
 	
 	public boolean moverDiscoTorre3(int disco) {
+		if(disco == 0) {
+			return false;
+		}
 		int index = 0;
 		while(index < fila3.length-1 && fila3[index] == 0) { //Encontrar el lugar donde hayan discos
 			index++;
@@ -204,6 +319,36 @@ public class Hanoi {
 			return true;
 		}else {
 			return false;
+		}
+	}
+	
+	public int buscarIndexDiscoTorre(int disco, int torre) {
+		int indexReturn;
+		switch (torre) {
+		case 1: {
+			for(indexReturn = fila1.length-1; indexReturn>0; indexReturn--) {
+				if(disco == fila1[indexReturn]) {
+					return indexReturn; 				
+				}
+			}
+			return(disco == fila1[indexReturn]) ? indexReturn:-1;
+		}case 2: {
+			for(indexReturn = fila2.length-1; indexReturn>0; indexReturn--) {
+				if(disco == fila2[indexReturn]) {
+					return indexReturn; 				
+				}
+			}
+			return(disco == fila2[indexReturn]) ? indexReturn:-1;
+		}case 3: {
+			for(indexReturn = fila3.length-1; indexReturn>0; indexReturn--) {
+				if(disco == fila3[indexReturn]) {
+					return indexReturn; 				
+				}
+			}
+			return(disco == fila3[indexReturn]) ? indexReturn:-1;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + torre);
 		}
 	}
 	
