@@ -265,6 +265,25 @@ public class Metodos {
 		}
 		return temp;
 	}
+	
+	public static int sumaMatriz(int[][] matriz) throws ArregloVacio {
+		if(matriz == null || (matriz.length == 0 )) {
+			throw new ArregloVacio();
+		}
+		return Metodos.sumaMatriz(matriz, 0, 0);
+	}
+	
+	public static int sumaMatriz(int[][] matriz,int f, int c) { //Recorrer fila por fila
+		if(f == matriz.length-1 && c == matriz[f].length-1) { //posición final
+			return matriz[f][c];
+		}else if(c == matriz[f].length-1) { //Pasamos a la siguiente fila
+			return matriz[f][c] + Metodos.sumaMatriz(matriz, f+1, 0);
+		}else { //Avanzamos una columna
+			return matriz[f][c] + Metodos.sumaMatriz(matriz, f, c+1);
+		}
+	}
+	
+	
 }
 class NumeroNegativo extends Exception{
 	public NumeroNegativo(long num) {
