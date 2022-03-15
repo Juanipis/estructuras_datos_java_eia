@@ -24,7 +24,7 @@ public class Algoritmos {
 				//    cv(2)      cd+cv   cd
 				for (int k = i; k <= j ; k++) {
 					//  cd(2)
-					sumaActual = 0;
+					sumaActual += a[k];
 					//  cd
 					if (sumaActual > sumaMax) {
 						//cd(2)
