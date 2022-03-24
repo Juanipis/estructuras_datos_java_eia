@@ -14,11 +14,7 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) {
-		String[] array = {"a", "b", "c", "d", "e"};
-		ArrayList<String> arr = new ArrayList<>(Arrays.asList(array));
-		arr.remove(2);
-		System.out.println(arr);
-	      //Method 1
+		System.out.println(3/2);
 	}
 
 }
