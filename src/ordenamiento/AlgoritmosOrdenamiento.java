@@ -51,5 +51,15 @@ public class AlgoritmosOrdenamiento {
 			a[j] = temp;
 		}
 	}
+	
+	public static boolean ordenado(Comparable[] a) { //De menor a mayor
+		if(a.length == 0 || a.length == 1) return true;
+		
+		int index = 0;
+		while(index<a.length-1 && a[index].compareTo(a[index+1]) <= 0) {
+			index++;
+		}
+		return (index==a.length-1 && a[index-1].compareTo(a[index]) <= 0) ? true: false;
+	}
 
 }

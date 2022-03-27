@@ -17,8 +17,10 @@ public class Main {
 		Persona pr6 = new Persona("Nadia", 21);
 		
 		Persona[] personas = {pr1,pr2,pr3,pr4,pr5,pr6};
+		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));
 		AlgoritmosOrdenamiento.bubblesSort(personas);
 		System.out.println(Arrays.toString(personas));
+		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));
 		
 		Persona[] personas1 = {pr1,pr2,pr3,pr4,pr5,pr6};
 		AlgoritmosOrdenamiento.selectionSort(personas1);
@@ -28,9 +30,13 @@ public class Main {
 		AlgoritmosOrdenamiento.insertSort(personas3);
 		System.out.println(Arrays.toString(personas3));
 		
-		String[] arregl = {"zz","fs","bs","dd"};
+		String[] arregl = {"zz","fs"};
+		System.out.println(AlgoritmosOrdenamiento.ordenado(arregl));
 		AlgoritmosOrdenamiento.bubblesSort(arregl);
+		System.out.println(AlgoritmosOrdenamiento.ordenado(arregl));
 		System.out.println(Arrays.toString(arregl));
+		
+		
 
 	}
 
