@@ -1,5 +1,7 @@
 package parcial2019;
 
+import java.util.Iterator;
+
 public class CuatroElementos {
 	private Equipo[] equipos;
 	private Jugador[] jugadores;
@@ -16,6 +18,10 @@ public class CuatroElementos {
 		while(index < equipos.length && equipos[index] != null && !equipos[index].getNombreEquipo().equals(nombreEquipo)) {
 			index++;
 		}
+		for (int i = 0; i < equipos.length; i++) {
+			
+		}
+		
 		if(index < equipos.length && equipos[index] != null && equipos[index].getNombreEquipo().equals(nombreEquipo)) {
 			return index;
 		}else {
