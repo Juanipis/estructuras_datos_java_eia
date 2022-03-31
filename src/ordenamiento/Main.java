@@ -36,8 +36,10 @@ public class Main {
 		System.out.println(AlgoritmosOrdenamiento.ordenado(arregl));
 		System.out.println(Arrays.toString(arregl));
 		
-		
-
+		Persona[] personas4 = {pr1,pr2,pr3,pr4,pr5,pr6};
+		String[] letras = {"z","a"};
+		Comparable[] listaOrdenada = AlgoritmosOrdenamiento.mergeSort(letras);
+		System.out.println(Arrays.toString(listaOrdenada));
 	}
 
 }

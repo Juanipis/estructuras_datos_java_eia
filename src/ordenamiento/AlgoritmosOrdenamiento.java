@@ -1,8 +1,10 @@
 package ordenamiento;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class AlgoritmosOrdenamiento {
+	public static Random rnd = new Random();
 
 	public static void bubblesSort(int [] a) {
 		for (int i = 0; i < a.length-1; i++) {
@@ -92,6 +94,32 @@ public class AlgoritmosOrdenamiento {
 		}
 	}
 	
+	private  static void quickSortrRandomPivote(Comparable[] a, int inicio, int fin) {
+		if(fin <= inicio) {
+			return;
+		}
+		else {
+			Comparable pivote = a[AlgoritmosOrdenamiento.rnd.nextInt(fin+1)];
+			int i = inicio-1;
+			int j = fin;
+			Comparable temp;
+			while(i<j) {
+				while(a[++i].compareTo(pivote)<0);
+				while(j > inicio && pivote.compareTo(a[--j])<0);
+				if(i<j) {
+					temp=a[i];
+					a[i] = a[j];
+					a[j] = temp;
+				}
+			}
+			temp=a[i];
+			a[i]=a[fin];
+			a[fin] = temp;
+			int partition = i;
+			quickSortr(a, inicio, partition-1);
+			quickSortr(a, partition+1, fin);
+		}
+	}
 
 	
 	public static Comparable[] mergeSort(Comparable[] lista) {
