@@ -101,15 +101,15 @@ public class AlgoritmosOrdenamiento {
 	private static void quickSortRandom(Comparable[] a, int inicio, int fin){
 		Random r=new Random();
 		if (fin <= inicio)
-		return;
+			return;
 		else {//CAMBIO://El pivote se selecciona en una pocisión aleatoria
-		int indexPivote=r.nextInt((fin-inicio))+inicio;
-		//System.out.println("Pivote: "+ a[indexPivote]);
-		Comparable pivote= a[indexPivote];
-		int i = inicio-1;
-		int j = fin+1; // //CAMBIO: Se cambia fin, para llamar con length-1
-		Comparable temp;
-		while (i< j) {//busca un elemento mayor que pivote, si no para en el pivote (el último)
+			int indexPivote=r.nextInt((fin-inicio))+inicio;
+			//System.out.println("Pivote: "+ a[indexPivote]);
+			Comparable pivote= a[indexPivote];
+			int i = inicio-1;
+			int j = fin+1; // //CAMBIO: Se cambia fin, para llamar con length-1
+			Comparable temp;
+			while (i< j) {//busca un elemento mayor que pivote, si no para en el pivote (el último)
 		//CAMBIO: ADICIONAR i<fin y cambiar <0 por <=0 en ambos ciclos, para que salten el pivote
 		while( i < fin && a[++i].compareTo(pivote)<=0);//se busca un elemento menor que el pivote, si no lo hay, para en el primero
 		while( j > inicio && pivote.compareTo(a[--j])<=0 );
