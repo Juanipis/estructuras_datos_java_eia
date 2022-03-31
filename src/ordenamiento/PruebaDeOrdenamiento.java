@@ -6,7 +6,7 @@ import java.util.Random;
 public class PruebaDeOrdenamiento {
 
 	public static void main(String[] args) {
-		int N= 20;
+		int N= 10000;
 		Random r = new Random();
 		Integer[] lista = new Integer[N];
 		for(int i=0;i<N;i++) {
@@ -40,6 +40,7 @@ public class PruebaDeOrdenamiento {
 			timefin = System.currentTimeMillis();
 			System.out.println("QuickSort: " + (timefin-timeinicio));
 			
+			/*
 			listaTemp = Arrays.copyOf(lista, lista.length);
 			timeinicio = System.currentTimeMillis();
 			AlgoritmosOrdenamiento.quickSortRandomPivote(listaTemp);
@@ -47,11 +48,11 @@ public class PruebaDeOrdenamiento {
 			System.out.println(AlgoritmosOrdenamiento.ordenado(listaTemp));
 			timefin = System.currentTimeMillis();
 			System.out.println("QuickSort Random Pivote: " + (timefin-timeinicio));
-			
+			*/
 			listaTemp = Arrays.copyOf(lista, lista.length);
 			timeinicio = System.currentTimeMillis();
 			Comparable [] arr = AlgoritmosOrdenamiento.mergeSort(listaTemp);
-			System.out.println(AlgoritmosOrdenamiento.ordenado(arr));
+			//System.out.println(AlgoritmosOrdenamiento.ordenado(arr));
 			timefin = System.currentTimeMillis();
 			System.out.println("MergeSort: " + (timefin-timeinicio));
 		}finally {
