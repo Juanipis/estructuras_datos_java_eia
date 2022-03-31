@@ -36,6 +36,12 @@ public class Persona implements Comparable<Persona>{
 
 
 	@Override
+	public String toString() {
+		return nombre + "-" + edad;
+	}
+
+
+	@Override
 	public int compareTo(Persona pr) {
 		//Por nombre
 		//return this.getNombre().compareTo(pr.getNombre());

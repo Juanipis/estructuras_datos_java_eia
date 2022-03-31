@@ -94,12 +94,16 @@ public class AlgoritmosOrdenamiento {
 		}
 	}
 	
+	public static void quickSortRandomPivote(Comparable[] a) {
+		quickSortrRandomPivote(a,0, a.length-1);
+	}
+	
 	private  static void quickSortrRandomPivote(Comparable[] a, int inicio, int fin) {
 		if(fin <= inicio) {
 			return;
 		}
 		else {
-			Comparable pivote = a[AlgoritmosOrdenamiento.rnd.nextInt(fin+1)];
+			Comparable pivote = a[(int)(Math.random() * ((fin - inicio) + 1)) + inicio];
 			int i = inicio-1;
 			int j = fin;
 			Comparable temp;
