@@ -1,5 +1,7 @@
 package ordenamiento;
 
+import java.util.Arrays;
+
 public class AlgoritmosOrdenamiento {
 
 	public static void bubblesSort(int [] a) {
@@ -88,6 +90,44 @@ public class AlgoritmosOrdenamiento {
 			quickSortr(a, inicio, partition-1);
 			quickSortr(a, partition+1, fin);
 		}
+	}
+	
+
+	
+	public static Comparable[] mergeSort(Comparable[] lista) {
+		if(lista.length == 1 || lista.length == 0) {
+			return lista;
+		}
+		else {
+			Comparable[] lmitad1 = mergeSort(Arrays.copyOfRange(lista, 0, lista.length/2));
+			Comparable[] lmitad2 = mergeSort(Arrays.copyOfRange(lista, lista.length/2, lista.length));
+			return mergeListasOrdenadas(lmitad1, lmitad2);
+		}
+	}
+	
+	public static Comparable[] mergeListasOrdenadas(Comparable[] l1, Comparable[] l2) {
+		// Se supone que ambas listas estan ordenadas
+		Comparable[] lsO = new Comparable[l1.length + l2.length];
+		int indexl1 = 0;
+		int indexl2 = 0;
+		int indexlsO = 0;
+		while(indexl1 < l1.length || indexl2 < l2.length ) {
+			if(indexl1< l1.length && indexl2 == l2.length) { // Si ya llenamos la lista l2, simplemente agregamos a la lista
+				lsO[indexlsO++] = l1[indexl1++];
+			}
+			else if(indexl1 == l1.length && indexl2 < l2.length) { // Si ya llenamos la lista l1, simplemente agregamos a la lista
+				lsO[indexlsO++] = l2[indexl2++];
+			}
+			else{ //Puede suceder que el de l1 sea mayor o menor
+				if(l1[indexl1].compareTo(l2[indexl2])<0) { //Si el elmento de la lista l1 es menor al de la lista l2
+					lsO[indexlsO++] = l1[indexl1++];
+				}
+				else { //Si el elmento de la lista l1 es mayor al de la lista l2
+					lsO[indexlsO++] = l2[indexl2++];
+				}
+			}
+		}
+		return lsO;
 	}
 
 }
