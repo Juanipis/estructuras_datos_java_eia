@@ -215,17 +215,23 @@ public class AlgoritmosOrdenamiento {
 		}
 	
 	public static Comparable[] eliminarDuplicadosOrdenados(Comparable[] arr) throws Exception {
-			
+		//2
 		Comparable[] arrN = arr;	
+		// 2
 		int indexArr = 0;
+		//n-1
 		while(indexArr < arrN.length-1) {
+			//3(n-2)                          5(n-2)
 			if(arrN[indexArr+1] != null && arrN[indexArr].compareTo(arrN[indexArr+1])==0) {
 				//Vamos a buscar los siguientes elemntos iguales
+				//Si todos tuvieran 1 o mas elementos repetidos seria el peor de los casos
+				
 				int indexInicio = indexArr+1;
 				int indexFinal = indexInicio;
 				while(indexInicio < arrN.length && arrN[indexInicio].compareTo(arrN[indexFinal])==0) indexFinal++;
 				arrN = (indexInicio != indexFinal) 	?  	eliminarElementosArregloRangos(arrN, indexInicio,indexFinal-1):
 														eliminarElementosArregloRangos(arrN, indexInicio,indexFinal);
+				indexArr++;
 			}
 			else {
 				indexArr++;
@@ -233,50 +239,85 @@ public class AlgoritmosOrdenamiento {
 		}
 		return arrN;
 	}
-	
+	/*
+	 * Aquí sucede algo similar con la cantidad de veces, el while se va a hacer n-1 veces si no tuviera duplicados
+	 * 
+	 */
 	public static Comparable[] eliminarDuplicadosSinOrdenar(Comparable[] arr) {
+		// 2
 		Comparable[] Narr = arr;
+		// 2
 		int indexCompare = 0;
+		// n+1
 		while(indexCompare< Narr.length) {
+			//n*(11n+5)
 			int[] indexDuplicados = indexDuplicados(Narr,arr[indexCompare]);
+			//n
 			if(indexDuplicados.length>1) {
+				//2*(5+15n) aquí depende de la cantidad de elementos del arreglo indexDuplicados
 				Narr = eliminarElementosArreglo(Narr, Arrays.copyOfRange(indexDuplicados, 1, indexDuplicados.length));
 			}
+			//n
 			indexCompare++;
 		}
+		//1
 		return Narr;
 	}
+	/* cv es realmente n si el arreglo no tuviera duplicados, pero 
+	 * como cada vez los eliminamos terminamos recorriendo  n veces
+	 * 11n²+38n+16 --> O(n²)
+	 */
 	
 	public static int[] indexDuplicados(Comparable[] arr, Comparable elemento) {
+		// 2
 		int[] indexDuplicados = new int[0];
+		//     2           n+1           n
 		for (int i = 0; i < arr.length; i++) {
-			if(arr[i] != null && arr[i].compareTo(elemento)==0) {
+			//    2n                     2n
+			if(arr[i] != null && arr[i].compareTo(elemento)==0) { //Este es el peor de los casos, que todos los elementos del arreglo sean iguales
+				//2n
 				indexDuplicados = Arrays.copyOf(indexDuplicados, indexDuplicados.length+1);
+				//3n
 				indexDuplicados[indexDuplicados.length-1] = i;
 			}
 		}
+		//1
 		return indexDuplicados;
-	}
+	}// f(n) = 11n+5
 
 	public static Comparable[] eliminarElementosArreglo(Comparable[] arr, int[] indexArr) {
+		// 2
 		Comparable[] arrN = arr;
+		
+		//       2                     n+1  n
 		for(int i = indexArr.length-1; i>=0; i--) {
+			//3n
 			Comparable[] arrT = new Comparable[arrN.length-1];
+			//2n
 			System.arraycopy(arrN, 0, arrT, 0, indexArr[i]);
+			//7n
 			System.arraycopy(arrN, indexArr[i]+1, arrT, indexArr[i], arrN.length-indexArr[i]-1);
+			//n
 			arrN = arrT;
 		}
+		//1
 		return arrN;
-	}
+	} // f(n) = 5+15n --> O(n)
+	
 	
 	public static Comparable[] eliminarElementosArregloRangos(Comparable[] arr, int indexInicio, int indexFinal) { //Es inclusivo
+		//  5
 		if(indexInicio < arr.length && indexFinal<arr.length && indexInicio<=indexFinal && indexInicio>=0 && indexFinal>=0) {
+			// 4
 			Comparable[] arrT = new Comparable[arr.length-indexFinal+indexInicio-1];
+			//1
 			System.arraycopy(arr, 0, arrT, 0, indexInicio);
+			// 4
 			System.arraycopy(arr, indexFinal+1, arrT, indexInicio, arr.length-indexFinal-1); 
+			// 1
 			return arrT;
 		}else {
 			return arr;
 		}
-	}
+	} // f(n) = 15 --> O(1)
 }
