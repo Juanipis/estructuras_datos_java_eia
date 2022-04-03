@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class Main {
 
-	public static void main(String[] args) {
+	@SuppressWarnings("rawtypes")
+	public static void main(String[] args) throws Exception {
 		
 		Persona pr1 = new Persona("Marcela", 24);
 		Persona pr2 = new Persona("Oscar", 21);
@@ -15,11 +16,20 @@ public class Main {
 		Persona pr7 = new Persona("Marcela", 24);
 		Persona pr8 = new Persona("Marcela", 24);
 		Persona pr9 = new Persona("Oscar", 21);
+		Persona pr10 = new Persona("Marcela", 24);
 		
 		Comparable[] personas = {pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9};
 		System.out.println(Arrays.toString(personas));
 		personas = AlgoritmosOrdenamiento.eliminarDuplicadosSinOrdenar(personas);
+		AlgoritmosOrdenamiento.quickSort(personas);
 		System.out.println(Arrays.toString(personas));
+		System.out.println("--------------------");
+		
+		Comparable[] personas1 = {pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9,pr10};
+		AlgoritmosOrdenamiento.quickSort(personas1);
+		System.out.println(Arrays.toString(personas1));
+		personas1 = AlgoritmosOrdenamiento.eliminarDuplicadosOrdenados(personas1);
+		System.out.println(Arrays.toString(personas1));
 		/*
 		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));
 		AlgoritmosOrdenamiento.bubblesSort(personas);

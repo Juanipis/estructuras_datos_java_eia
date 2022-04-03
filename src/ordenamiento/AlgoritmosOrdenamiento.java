@@ -1,6 +1,7 @@
 package ordenamiento;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -213,6 +214,26 @@ public class AlgoritmosOrdenamiento {
 		return result;
 		}
 	
+	public static Comparable[] eliminarDuplicadosOrdenados(Comparable[] arr) throws Exception {
+			
+		Comparable[] arrN = arr;	
+		int indexArr = 0;
+		while(indexArr < arrN.length-1) {
+			if(arrN[indexArr+1] != null && arrN[indexArr].compareTo(arrN[indexArr+1])==0) {
+				//Vamos a buscar los siguientes elemntos iguales
+				int indexInicio = indexArr+1;
+				int indexFinal = indexInicio;
+				while(indexInicio < arrN.length && arrN[indexInicio].compareTo(arrN[indexFinal])==0) indexFinal++;
+				arrN = (indexInicio != indexFinal) 	?  	eliminarElementosArregloRangos(arrN, indexInicio,indexFinal-1):
+														eliminarElementosArregloRangos(arrN, indexInicio,indexFinal);
+			}
+			else {
+				indexArr++;
+			}
+		}
+		return arrN;
+	}
+	
 	public static Comparable[] eliminarDuplicadosSinOrdenar(Comparable[] arr) {
 		Comparable[] Narr = arr;
 		int indexCompare = 0;
@@ -246,5 +267,16 @@ public class AlgoritmosOrdenamiento {
 			arrN = arrT;
 		}
 		return arrN;
+	}
+	
+	public static Comparable[] eliminarElementosArregloRangos(Comparable[] arr, int indexInicio, int indexFinal) { //Es inclusivo
+		if(indexInicio < arr.length && indexFinal<arr.length && indexInicio<=indexFinal && indexInicio>=0 && indexFinal>=0) {
+			Comparable[] arrT = new Comparable[arr.length-indexFinal+indexInicio-1];
+			System.arraycopy(arr, 0, arrT, 0, indexInicio);
+			System.arraycopy(arr, indexFinal+1, arrT, indexInicio, arr.length-indexFinal-1); 
+			return arrT;
+		}else {
+			return arr;
+		}
 	}
 }
