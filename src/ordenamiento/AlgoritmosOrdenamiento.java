@@ -3,6 +3,7 @@ package ordenamiento;
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class AlgoritmosOrdenamiento {
 	public static Random rnd = new Random();
 
@@ -211,5 +212,39 @@ public class AlgoritmosOrdenamiento {
 		result[k+i]=lista2[k];
 		return result;
 		}
+	
+	public static Comparable[] eliminarDuplicados(Comparable[] arr) {
+		Comparable[] Narr = arr;
+		int indexCompare = 0;
+		while(indexCompare< Narr.length) {
+			int[] indexDuplicados = indexDuplicados(Narr,arr[indexCompare]);
+			if(indexDuplicados.length>1) {
+				Narr = eliminarElementosArreglo(Narr, Arrays.copyOfRange(indexDuplicados, 1, indexDuplicados.length));
+			}
+			indexCompare++;
+		}
+		return Narr;
+	}
+	
+	public static int[] indexDuplicados(Comparable[] arr, Comparable elemento) {
+		int[] indexDuplicados = new int[0];
+		for (int i = 0; i < arr.length; i++) {
+			if(arr[i] != null && arr[i].compareTo(elemento)==0) {
+				indexDuplicados = Arrays.copyOf(indexDuplicados, indexDuplicados.length+1);
+				indexDuplicados[indexDuplicados.length-1] = i;
+			}
+		}
+		return indexDuplicados;
+	}
 
+	public static Comparable[] eliminarElementosArreglo(Comparable[] arr, int[] indexArr) {
+		Comparable[] arrN = arr;
+		for(int i = indexArr.length-1; i>=0; i--) {
+			Comparable[] arrT = new Comparable[arrN.length-1];
+			System.arraycopy(arrN, 0, arrT, 0, indexArr[i]);
+			System.arraycopy(arrN, indexArr[i]+1, arrT, indexArr[i], arrN.length-indexArr[i]-1);
+			arrN = arrT;
+		}
+		return arrN;
+	}
 }
