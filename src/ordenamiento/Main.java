@@ -18,7 +18,7 @@ public class Main {
 		
 		Comparable[] personas = {pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9};
 		System.out.println(Arrays.toString(personas));
-		personas = AlgoritmosOrdenamiento.eliminarDuplicados(personas);
+		personas = AlgoritmosOrdenamiento.eliminarDuplicadosSinOrdenar(personas);
 		System.out.println(Arrays.toString(personas));
 		/*
 		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));

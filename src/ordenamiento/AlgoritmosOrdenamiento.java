@@ -213,7 +213,7 @@ public class AlgoritmosOrdenamiento {
 		return result;
 		}
 	
-	public static Comparable[] eliminarDuplicados(Comparable[] arr) {
+	public static Comparable[] eliminarDuplicadosSinOrdenar(Comparable[] arr) {
 		Comparable[] Narr = arr;
 		int indexCompare = 0;
 		while(indexCompare< Narr.length) {
