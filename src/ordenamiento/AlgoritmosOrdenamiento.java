@@ -58,6 +58,34 @@ public class AlgoritmosOrdenamiento {
 		}
 	}
 	
+	/*
+	 * Modifique el algoritmo de selección directa para ordenar crecientemente
+     * los elementos  que se encuentran en las posiciones pares del arreglo y
+     * en orden decreciente los elementos que se encuentran en las posiciones impares
+     * del arreglo, manteniéndose en las posiciones pares e impares respectivamente.
+	 */
+	public static void insertSortParesImpares(Comparable[] a) { //
+		for (int i = 2; i < a.length; i++) {
+			Comparable temp = a[i]; //El que quiero insertar
+			int j=i;
+			//Pares --> creciente
+			if(i%2 == 0) {
+				while(j>0 && temp.compareTo(a[j-2])<0) {
+					a[j] = a[j-2];
+					j-=2;
+				}
+			}
+			else {
+				while(j>1 && temp.compareTo(a[j-2])>0) {
+					a[j] = a[j-2];
+					j-=2;
+				}
+			}
+			a[j] = temp;
+			
+		}
+	}
+	
 	public static boolean ordenado(Comparable[] a) { //De menor a mayor
 		if(a.length == 0 || a.length == 1) return true;
 		int index = 0;

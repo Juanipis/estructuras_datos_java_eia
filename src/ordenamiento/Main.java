@@ -37,8 +37,10 @@ public class Main {
 		System.out.println("Eliminado ordenado: " + (timefin-timeinicio));
 		System.out.println(Arrays.toString(personas1));
 		
-		
-		
+		//Pruebas de insertSort
+		Comparable[] letras = {"6","2","1","7","4","1"};
+		AlgoritmosOrdenamiento.insertSortParesImpares(letras);
+		System.out.println(Arrays.toString(letras));
 		
 		
 		/*
