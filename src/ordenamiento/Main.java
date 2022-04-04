@@ -20,7 +20,10 @@ public class Main {
 		
 		Comparable[] personas = {pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9};
 		System.out.println(Arrays.toString(personas));
+		long timeinicio = System.currentTimeMillis();
 		personas = AlgoritmosOrdenamiento.eliminarDuplicadosSinOrdenar(personas);
+		long timefin = System.currentTimeMillis();
+		System.out.println("Eliminado sin ordenar: " + (timefin-timeinicio));
 		AlgoritmosOrdenamiento.quickSort(personas);
 		System.out.println(Arrays.toString(personas));
 		System.out.println("--------------------");
@@ -28,8 +31,16 @@ public class Main {
 		Comparable[] personas1 = {pr1,pr2,pr3,pr4,pr5,pr6,pr7,pr8,pr9,pr10};
 		AlgoritmosOrdenamiento.quickSort(personas1);
 		System.out.println(Arrays.toString(personas1));
+		timeinicio = System.currentTimeMillis();
 		personas1 = AlgoritmosOrdenamiento.eliminarDuplicadosOrdenados(personas1);
+		timefin = System.currentTimeMillis();
+		System.out.println("Eliminado ordenado: " + (timefin-timeinicio));
 		System.out.println(Arrays.toString(personas1));
+		
+		
+		
+		
+		
 		/*
 		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));
 		AlgoritmosOrdenamiento.bubblesSort(personas);

@@ -226,22 +226,28 @@ public class AlgoritmosOrdenamiento {
 				//Vamos a buscar los siguientes elemntos iguales
 				//Si todos tuvieran 1 o mas elementos repetidos seria el peor de los casos
 				
+				//3(n-2)
 				int indexInicio = indexArr+1;
+				//2(n-2)
 				int indexFinal = indexInicio;
+				//n-2 + 4c																				c-1
 				while(indexInicio < arrN.length && arrN[indexInicio].compareTo(arrN[indexFinal])==0) indexFinal++;
+				//2(n-2)
 				arrN = (indexInicio != indexFinal) 	?  	eliminarElementosArregloRangos(arrN, indexInicio,indexFinal-1):
 														eliminarElementosArregloRangos(arrN, indexInicio,indexFinal);
+				//n-2
 				indexArr++;
 			}
 			else {
 				indexArr++;
 			}
 		}
+		//1
 		return arrN;
 	}
 	/*
 	 * Aquí sucede algo similar con la cantidad de veces, el while se va a hacer n-1 veces si no tuviera duplicados
-	 * 
+	 * 4c+18n-27 --> O(n)
 	 */
 	public static Comparable[] eliminarDuplicadosSinOrdenar(Comparable[] arr) {
 		// 2
@@ -254,7 +260,7 @@ public class AlgoritmosOrdenamiento {
 			int[] indexDuplicados = indexDuplicados(Narr,arr[indexCompare]);
 			//n
 			if(indexDuplicados.length>1) {
-				//2*(5+15n) aquí depende de la cantidad de elementos del arreglo indexDuplicados
+				//2*(5+15c) + n aquí depende de la cantidad de elementos del arreglo indexDuplicados
 				Narr = eliminarElementosArreglo(Narr, Arrays.copyOfRange(indexDuplicados, 1, indexDuplicados.length));
 			}
 			//n
@@ -265,7 +271,7 @@ public class AlgoritmosOrdenamiento {
 	}
 	/* cv es realmente n si el arreglo no tuviera duplicados, pero 
 	 * como cada vez los eliminamos terminamos recorriendo  n veces
-	 * 11n²+38n+16 --> O(n²)
+	 * 30c+11n²+9n+16 --> O(n²)
 	 */
 	
 	public static int[] indexDuplicados(Comparable[] arr, Comparable elemento) {
