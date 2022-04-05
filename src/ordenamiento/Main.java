@@ -41,8 +41,10 @@ public class Main {
 		Comparable[] letras = {"6","2","1","7","4","1"};
 		AlgoritmosOrdenamiento.insertSortParesImpares(letras);
 		System.out.println(Arrays.toString(letras));
-		
-		
+		//Pruebas de selectionSort
+		Comparable[] letras1 = {"6","2","1","7","4","1"};
+		AlgoritmosOrdenamiento.selectionSortParesImpares(letras1);
+		System.out.println(Arrays.toString(letras1));
 		/*
 		System.out.println(AlgoritmosOrdenamiento.ordenado(personas));
 		AlgoritmosOrdenamiento.bubblesSort(personas);

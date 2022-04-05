@@ -46,6 +46,24 @@ public class AlgoritmosOrdenamiento {
 		}
 	}
 	
+	
+	public static void selectionSortParesImpares(Comparable[] a) {
+		for (int i = 0; i < a.length-1; i++) {
+			int im=i;
+			for (int j = i+1; j < a.length; j++) {
+				if(j%2 == 0 && im%2==0 && a[j].compareTo(a[im])<0) {
+					im=j;
+				}
+				else if(j%2 == 1 && im%2==1 && a[j].compareTo(a[im])>0) {
+					im=j;
+				}
+			}
+			Comparable temp = a[i];
+			a[i] = a[im];
+			a[im] = temp;
+		}
+	}
+	
 	public static void insertSort(Comparable[] a) {
 		for (int i = 0; i < a.length; i++) {
 			Comparable temp = a[i]; //El que quiero insertar
@@ -57,6 +75,7 @@ public class AlgoritmosOrdenamiento {
 			a[j] = temp;
 		}
 	}
+	
 	
 	/*
 	 * Modifique el algoritmo de selección directa para ordenar crecientemente
