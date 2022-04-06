@@ -40,4 +40,18 @@ public class AlgoritmosBusqueda {
 			}
 		}
 	}
+	public static int buscarElemento(int[] arr, int obj) {
+		if(arr.length>0) {
+			int resultado = 0;
+			for (int i = 0; i < arr.length; i++) {
+				if(Math.abs(obj-arr[i])< Math.abs(arr[resultado]-obj)) {
+					resultado = i;
+				}
+			}
+			return resultado;
+		}
+		else{
+			return -1;
+		}
+	}
 }
