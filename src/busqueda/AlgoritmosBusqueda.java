@@ -71,4 +71,9 @@ public class AlgoritmosBusqueda {
 			return -1;
 		}
 	}
+	
+	public static int buscarElementoIndiceLD(Comparable[] arr, Comparable obj, int indice) {
+		while(indice<arr.length && arr[indice].compareTo(obj)!= 0) indice++;
+		return(indice<arr.length && arr[indice].compareTo(obj)== 0) ? indice:-1;
+	}
 }
