@@ -120,12 +120,16 @@ public class Lista <T extends Comparable<T>>{
 
 }
 
-class Nodo<T extends Comparable<T>>{
+class Nodo<T>{
 	private T cuerpo;
 	private Nodo<T> cabecera;
 	
 	public Nodo(T cuerpo) {
 		this.cuerpo = cuerpo;
+	}
+	public Nodo(T cuerpo, Nodo<T> n) {
+		this.cuerpo = cuerpo;
+		this.cabecera = n;
 	}
 	public Nodo() {
 	}

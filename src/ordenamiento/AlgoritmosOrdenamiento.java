@@ -79,7 +79,7 @@ public class AlgoritmosOrdenamiento {
 	}
 	
 	public static void insertSortConBusquedaBinaria(Comparable[] a) {
-		for (int i = 0; i < a.length; i++) {
+		for (int i = 1; i < a.length; i++) {
 			Comparable temp = a[i]; //El que quiero insertar
 			int indiceE = AlgoritmosBusqueda.buscarInidiceInsersion(a, temp, 0, i);
 			int j;
