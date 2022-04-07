@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
+import busqueda.AlgoritmosBusqueda;
+
 
 public class AlgoritmosOrdenamiento {
 	public static Random rnd = new Random();
@@ -76,6 +78,17 @@ public class AlgoritmosOrdenamiento {
 		}
 	}
 	
+	public static void insertSortConBusquedaBinaria(Comparable[] a) {
+		for (int i = 0; i < a.length; i++) {
+			Comparable temp = a[i]; //El que quiero insertar
+			int indiceE = AlgoritmosBusqueda.buscarInidiceInsersion(a, temp, 0, i);
+			int j;
+			for (j = i; j > indiceE; j--) {
+				a[j] = a[j-1];
+			}
+			a[j] = temp;
+		}
+	}
 	
 	/*
 	 * Modifique el algoritmo de selección directa para ordenar crecientemente

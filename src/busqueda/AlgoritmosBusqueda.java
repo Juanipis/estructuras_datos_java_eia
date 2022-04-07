@@ -36,7 +36,24 @@ public class AlgoritmosBusqueda {
 			else {
 				return (arr[medio].compareTo(valor)>0) ? 
 						busquedaBinRecursiva(arr,valor,inicio,medio-1):
-						busquedaBinRecursiva(arr,valor,inicio,medio-1);
+						busquedaBinRecursiva(arr,valor,medio+1,fin);
+			}
+		}
+	}
+	public static int buscarInidiceInsersion(Comparable[] arr,Comparable valor,int inicio, int fin) { //debemos hallar el menor
+		int medio;
+		if(inicio>=fin) {
+			return arr[inicio].compareTo(valor) >= 0 ? inicio:inicio+1;
+ 		}
+		else {
+			medio = (inicio+fin)/2;
+			if(arr[medio].compareTo(valor) == 0) { //En caso de elemento repetio se inserta ahi
+				return medio;
+			}
+			else {
+				return (arr[medio].compareTo(valor)>0) ? 
+						buscarInidiceInsersion(arr,valor,inicio,medio-1):
+							buscarInidiceInsersion(arr,valor,medio+1,fin);
 			}
 		}
 	}
