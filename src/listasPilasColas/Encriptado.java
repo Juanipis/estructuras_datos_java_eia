@@ -38,12 +38,16 @@ public class Encriptado {
 		for(int i = mensaje.length()-1; i >=0; i--) {
 			result.append(mensaje.charAt(i));
 		}
-		return result.toString()
-;	}
+		return result.toString();
+	}
 	
 	public static String codificar(String mensaje) {
 		return codificarFase2(codificarFase1(mensaje));
 	}
+	public static String deCodificar(String mensaje) {
+		return codificarFase2(codificarFase1(mensaje));
+	}
+	
 	
 	public static boolean vocal(char letter) {
 		char[] vocales = {'a','e','i','o','u'};
