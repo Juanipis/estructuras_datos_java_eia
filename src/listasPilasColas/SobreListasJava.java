@@ -24,6 +24,7 @@ public class SobreListasJava {
 		lista.add("Pana");
 		printList(lista);
 		
+		      
 		//Para eliminar elementos
 		//Con for clasico la lista cambia de tamaño, por lo cual el indice se a
 		ArrayList<String> listaTemp =(ArrayList<String>) lista.clone();

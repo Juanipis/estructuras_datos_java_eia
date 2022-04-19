@@ -50,7 +50,7 @@ public class Encriptado {
 	
 	
 	public static boolean vocal(char letter) {
-		char[] vocales = {'a','e','i','o','u'};
+		char[] vocales = {'a','e','i','o','u','á','é','í','ó','ú'};
 		int index = 0;
 		while(index < 5 && vocales[index] != Character.toLowerCase(letter)) index++;
 		return (index < 5 && vocales[index] == Character.toLowerCase(letter)) ? true:false;

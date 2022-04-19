@@ -12,6 +12,9 @@ public class Main {
 		System.out.println(nodo1.getCabecera().tieneCabecera());
 		System.out.println(nodo1.getCabecera().getCuerpo());
 		*/
+		String numero1 = "99";
+		String numero2 = "1111";
+		System.out.println(numero1.compareTo(numero2));
 		
 		Lista<Persona> lista1 = new Lista<Persona>();
 		lista1.add(new Persona("Juan",15));
