@@ -99,9 +99,9 @@ class UnidadReciclaje{
             if(pq != null && pq.getBarrio().equalsIgnoreCase(barrio)){  
                 existeBarrio = true;
                 if(pq.getAceptable() && pq instanceof PaqueteVidrio){ 
-                    totalVidrios[0] = totalVidrios[0] + pq.getKgAmbar();
-                    totalVidrios[1] = totalVidrios[1] + pq.getKgVerde();
-                    totalVidrios[2] = totalVidrios[1] + pq.getKgIncoloro();
+                    totalVidrios[0] = totalVidrios[0] + ((PaqueteVidrio) pq).getKgAmbar();
+                    totalVidrios[1] = totalVidrios[1] + ((PaqueteVidrio) pq).getKgVerde();
+                    totalVidrios[2] = totalVidrios[1] + ((PaqueteVidrio) pq).getKgIncoloro();
                 }
             }
         }
@@ -125,7 +125,7 @@ class UnidadReciclaje{
                 }
                 if(!existeBarrio){
                     brrPaquetes = Arrays.copyOf(brrPaquetes, brrPaquetes.length+1);
-                    brrPaquetes[brr.brrPaquetes.length-1] = pq.getBarrio();
+                    brrPaquetes[brrPaquetes.length-1] = pq.getBarrio();
                 }
             }
         }
@@ -156,7 +156,7 @@ class UnidadReciclaje{
             if(pq != null && pq instanceof PaquetePlastico){
                 for(int i = 0; i < barrios.length; i++){
                     if(pq.getBarrio().equalsIgnoreCase(barrios[i])){
-                        kgPlastico[i] = kgPlastico[i] + pq.getKgDuro();
+                        kgPlastico[i] = kgPlastico[i] + ((PaquetePlastico) pq).getKgDuro();
                     }
                 }
             }
