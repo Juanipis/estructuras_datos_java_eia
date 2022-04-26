@@ -1,9 +1,13 @@
 package listasPilasColas;
 
+import java.util.Date;
+
 public class PersonaCola implements Comparable<PersonaCola>{
 	private String nombre;
 	private int edad;
-	private int prioridad; 
+	private int prioridad;
+	private boolean embarazo;
+	private Date ingreso;
 	// 1 Embarazo
 	// 2 Mayor de 60
 	// 3 Cualquiera
@@ -12,13 +16,17 @@ public class PersonaCola implements Comparable<PersonaCola>{
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
+		this.embarazo = false;
 		this.prioridad = (edad >60) ? 2:3;
+		this.ingreso = new Date();
 	}
 	public PersonaCola(String nombre, int edad, boolean embarazo) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
+		this.embarazo = embarazo;
 		this.prioridad = (embarazo) ? 1:( (edad>60) ? 2:3);
+		this.ingreso = new Date();
 	}
 
 
@@ -64,6 +72,12 @@ public class PersonaCola implements Comparable<PersonaCola>{
 		int compar = this.getEdad()-pr.getEdad();
 		return (compar != 0) ? compar: this.getNombre().compareTo(pr.getNombre());
 		
+	}
+	public boolean isEmbarazo() {
+		return embarazo;
+	}
+	public Date getIngreso() {
+		return ingreso;
 	}
 	
 	
