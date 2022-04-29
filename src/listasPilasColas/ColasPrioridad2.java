@@ -54,7 +54,7 @@ public class ColasPrioridad2 {
 class ComparadorCola implements Comparator<PersonaCola>{
 
 	@Override
-	public int compare(PersonaCola aInsertar, PersonaCola yaEnCola) {
+	public int compare(PersonaCola arg0, PersonaCola arg1) {
 		//El elemento que ya esta en la cola es arg1
 		//Si devuelve un numero >= 0 entonces va a insertar el elemento en la posicion de arg1
 		
