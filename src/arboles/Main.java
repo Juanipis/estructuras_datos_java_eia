@@ -51,7 +51,7 @@ public class Main {
 		arbolBB.preorden();
 		
 		try {
-			System.out.println(arbolBB.buscarElemento(99));
+			System.out.println(arbolBB.buscarElemento(16));
 		} catch (ExeptionNodo e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

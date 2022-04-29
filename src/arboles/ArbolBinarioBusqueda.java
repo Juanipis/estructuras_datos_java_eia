@@ -48,11 +48,11 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 				return nodo.getLlave();
 			}
 			//Si el elemento es menor que la raiz
-			if(llave.compareTo(nodo.getLlave()) < 0 && nodo.getHijoIzq() !=null) {
+			else if(llave.compareTo(nodo.getLlave()) < 0 && nodo.getHijoIzq() !=null) {
 				return buscarElemento(llave, nodo.getHijoIzq());
 			}
 			// Si el elemento es mayor que la raiz
-			if(llave.compareTo(nodo.getLlave()) > 0 && nodo.getHijoDer() !=null) {
+			else if(llave.compareTo(nodo.getLlave()) > 0 && nodo.getHijoDer() !=null) {
 				return buscarElemento(llave, nodo.getHijoDer());
 			}
 			else {
