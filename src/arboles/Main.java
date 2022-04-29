@@ -49,9 +49,20 @@ public class Main {
 		}
 		System.out.println("Preorden");
 		arbolBB.preorden();
-		System.out.println(arbolBB.buscarElemento(4));
-		arbolBB.eliminarElemento(4);
-		System.out.println(arbolBB.buscarElemento(4));
+		System.out.println(arbolBB.buscarElemento(3));
+		arbolBB.eliminarElemento(3);
+		System.out.println(arbolBB.buscarElemento(4).getPadre());
+		System.out.println(arbolBB.buscarElemento(3));
+		ArbolBinarioBusqueda<Integer> arbolR = new ArbolBinarioBusqueda<>();
+		try {
+			arbolR.insertNodo(2);
+			System.out.println(arbolR.buscarElemento(2));
+			arbolR.eliminarElemento(2);
+			System.out.println(arbolR.buscarElemento(2));
+		} catch (ExeptionNodo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

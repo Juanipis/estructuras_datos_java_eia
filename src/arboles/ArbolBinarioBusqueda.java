@@ -68,16 +68,45 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	
 	public void eliminarElemento(E llave) {
 		NodoB<E> nodoEliminar = buscarElemento(llave);
+		
 		if(nodoEliminar != null) {
 			//Caso 1 ¿Es hoja?
-			if(nodoEliminar.padre != null && nodoEliminar.hijoIzq == null && nodoEliminar.hijoDer == null) {
+			if(nodoEliminar.hijoIzq == null && nodoEliminar.hijoDer == null) {
+				//Es raiz?
+				if(nodoEliminar.padre == null) {
+					this.setRaiz(null);
+				}
 				//Es izquierda?
-				if(nodoEliminar.padre.hijoIzq != null && nodoEliminar.padre.hijoIzq.equals(nodoEliminar)) {
+				else if(nodoEliminar.padre.hijoIzq != null && nodoEliminar.padre.hijoIzq.equals(nodoEliminar)) {
 					nodoEliminar.padre.setHijoIzq(null);
-				}else{
+				}
+				//Es derecha?
+				else{
 					nodoEliminar.padre.setHijoDer(null);
 				}
 			}
+			//Caso 2 ¿Solo tiene un hijo?
+			//Si solo tiene el hijoIzq
+			else if(nodoEliminar.hijoIzq != null && nodoEliminar.hijoDer == null) {
+				//Es la raiz?
+				if(nodoEliminar.padre == null) {
+					this.setRaiz(nodoEliminar.hijoIzq);
+				}
+				else {
+					nodoEliminar.padre.setHijoIzq(nodoEliminar.hijoIzq);
+				}
+			}
+			else if(nodoEliminar.hijoDer != null && nodoEliminar.hijoIzq == null) {
+				//Es la raiz?
+				if(nodoEliminar.padre == null) {
+					this.setRaiz(nodoEliminar.hijoDer);
+				}
+				else {
+					nodoEliminar.padre.setHijoDer(nodoEliminar.hijoDer);
+				}
+			}
+			
+			//Caso 3 ¿Tiene dos hijos?
 		}
 		
 	}
