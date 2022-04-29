@@ -1,5 +1,7 @@
 package arboles;
 
+import java.util.ArrayList;
+
 public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 
 	public ArbolBinarioBusqueda() {
@@ -96,6 +98,7 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 					nodoEliminar.padre.setHijoIzq(nodoEliminar.hijoIzq);
 				}
 			}
+			//Si solo tiene el hijoDer
 			else if(nodoEliminar.hijoDer != null && nodoEliminar.hijoIzq == null) {
 				//Es la raiz?
 				if(nodoEliminar.padre == null) {
@@ -107,6 +110,17 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 			}
 			
 			//Caso 3 ¿Tiene dos hijos?
+			//Vamos a buscar el elemento mas pequeno del subarbol derecho
+			else if(nodoEliminar.hijoDer != null && nodoEliminar.hijoIzq != null) {
+				//El elemento a la derecha del inorden
+				ArrayList<NodoB<E>> arr = this.inordenArr();
+				E in = arr.get(arr.indexOf(nodoEliminar)+1).getLlave();
+				//Eliminamos in
+				eliminarElemento(in);
+				//Ahora remplazamos nodoEliminar por in
+				nodoEliminar.setLlave(in);
+				
+			}
 		}
 		
 	}

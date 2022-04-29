@@ -1,5 +1,7 @@
 package arboles;
 
+import java.util.ArrayList;
+
 public class Arbol<E extends Comparable<E>>  {
 	protected NodoB<E> raiz;
 	
@@ -63,6 +65,19 @@ public class Arbol<E extends Comparable<E>>  {
 			inorden(r.getHijoIzq());
 			System.out.println(r.getLlave() + " ");
 			inorden(r.getHijoDer());
+		}
+	}
+	public ArrayList<NodoB<E>>  inordenArr() {
+		ArrayList<NodoB<E>> inOrden = new ArrayList<>();
+		inordenArr(raiz, inOrden);
+		return inOrden;
+		
+	}
+	private void inordenArr(NodoB<E> r, ArrayList<NodoB<E>> inOrden) {
+		if(r!=null) {
+			inordenArr(r.getHijoIzq(), inOrden);
+			inOrden.add(r);
+			inordenArr(r.getHijoDer(), inOrden);
 		}
 	}
 	

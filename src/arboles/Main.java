@@ -47,22 +47,28 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Preorden");
+		
+		System.out.println(arbolBB.buscarElemento(5));
+		arbolBB.inorden();
+		arbolBB.eliminarElemento(5);
+		System.out.println("-------------");
+		System.out.println(arbolBB.buscarElemento(5));
 		arbolBB.preorden();
-		System.out.println(arbolBB.buscarElemento(3));
-		arbolBB.eliminarElemento(3);
-		System.out.println(arbolBB.buscarElemento(4).getPadre());
-		System.out.println(arbolBB.buscarElemento(3));
-		ArbolBinarioBusqueda<Integer> arbolR = new ArbolBinarioBusqueda<>();
-		try {
-			arbolR.insertNodo(2);
-			System.out.println(arbolR.buscarElemento(2));
-			arbolR.eliminarElemento(2);
-			System.out.println(arbolR.buscarElemento(2));
-		} catch (ExeptionNodo e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+//		System.out.println(arbolBB.buscarElemento(3));
+//		arbolBB.eliminarElemento(3);
+//		System.out.println(arbolBB.buscarElemento(4).getPadre());
+//		System.out.println(arbolBB.buscarElemento(3));
+//		ArbolBinarioBusqueda<Integer> arbolR = new ArbolBinarioBusqueda<>();
+//		try {
+//			arbolR.insertNodo(2);
+//			System.out.println(arbolR.buscarElemento(2));
+//			arbolR.eliminarElemento(2);
+//			System.out.println(arbolR.buscarElemento(2));
+//		} catch (ExeptionNodo e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 	}
 }
