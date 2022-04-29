@@ -36,16 +36,17 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		return r;
 	}
 	
-	public E buscarElemento(E llave) throws ExeptionNodo {
+	public NodoB<E> buscarElemento(E llave) {
 		return buscarElemento(llave, this.raiz);
 	}
 	
-	protected E buscarElemento(E llave, NodoB<E> nodo) throws ExeptionNodo {
+	
+	protected NodoB<E> buscarElemento(E llave, NodoB<E> nodo) {
 		
 		if(raiz != null) {
 			//Si el elemento raiz es el buscado
 			if(nodo.getLlave().compareTo(llave) ==0) {
-				return nodo.getLlave();
+				return nodo;
 			}
 			//Si el elemento es menor que la raiz
 			else if(llave.compareTo(nodo.getLlave()) < 0 && nodo.getHijoIzq() !=null) {
@@ -56,12 +57,27 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 				return buscarElemento(llave, nodo.getHijoDer());
 			}
 			else {
-				throw new ExeptionNodo("No se encontro el elemento");
+				return null;
 			}
 			
 		}
 		else {
-			throw new ExeptionNodo("No se encontro el elemento");
+			return null;
+		}	
+	}
+	
+	public void eliminarElemento(E llave) {
+		NodoB<E> nodoEliminar = buscarElemento(llave);
+		if(nodoEliminar != null) {
+			//Caso 1 ¿Es hoja?
+			if(nodoEliminar.padre != null && nodoEliminar.hijoIzq == null && nodoEliminar.hijoDer == null) {
+				//Es izquierda?
+				if(nodoEliminar.padre.hijoIzq != null && nodoEliminar.padre.hijoIzq.equals(nodoEliminar)) {
+					nodoEliminar.padre.setHijoIzq(null);
+				}else{
+					nodoEliminar.padre.setHijoDer(null);
+				}
+			}
 		}
 		
 	}

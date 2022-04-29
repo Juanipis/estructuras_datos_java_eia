@@ -49,12 +49,9 @@ public class Main {
 		}
 		System.out.println("Preorden");
 		arbolBB.preorden();
+		System.out.println(arbolBB.buscarElemento(4));
+		arbolBB.eliminarElemento(4);
+		System.out.println(arbolBB.buscarElemento(4));
 		
-		try {
-			System.out.println(arbolBB.buscarElemento(16));
-		} catch (ExeptionNodo e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
