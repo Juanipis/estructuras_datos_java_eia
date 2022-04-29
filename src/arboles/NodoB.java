@@ -58,5 +58,11 @@ public class NodoB<E extends Comparable<E>> {
 	public void setPadre(NodoB<E> padre) {
 		this.padre = padre;
 	}
+
+	@Override
+	public String toString() {
+		return "NodoB [llave=" + llave + "]";
+	}
+	
 	
 }

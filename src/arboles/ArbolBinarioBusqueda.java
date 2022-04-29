@@ -35,10 +35,43 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		}
 		return r;
 	}
+	
+	public E buscarElemento(E llave) throws ExeptionNodo {
+		return buscarElemento(llave, this.raiz);
+	}
+	
+	protected E buscarElemento(E llave, NodoB<E> nodo) throws ExeptionNodo {
+		
+		if(raiz != null) {
+			//Si el elemento raiz es el buscado
+			if(nodo.getLlave().compareTo(llave) ==0) {
+				return nodo.getLlave();
+			}
+			//Si el elemento es menor que la raiz
+			if(llave.compareTo(nodo.getLlave()) < 0 && nodo.getHijoIzq() !=null) {
+				return buscarElemento(llave, nodo.getHijoIzq());
+			}
+			// Si el elemento es mayor que la raiz
+			if(llave.compareTo(nodo.getLlave()) > 0 && nodo.getHijoDer() !=null) {
+				return buscarElemento(llave, nodo.getHijoDer());
+			}
+			else {
+				throw new ExeptionNodo("No se encontro el elemento");
+			}
+			
+		}
+		else {
+			throw new ExeptionNodo("No se encontro el elemento");
+		}
+		
+	}
 }
 
 class ExeptionNodo extends Exception{
 	public ExeptionNodo() {
 		super("Nodo ya existe");
+	}
+	public ExeptionNodo(String msg) {
+		super(msg);
 	}
 }

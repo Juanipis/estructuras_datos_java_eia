@@ -15,7 +15,6 @@ public class PersonaCola implements Comparable<PersonaCola>{
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
-		this.embarazo = false;
 		this.prioridad = (edad >60) ? 2:3;
 		this.llegada = new Date();
 	}
@@ -23,7 +22,6 @@ public class PersonaCola implements Comparable<PersonaCola>{
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
-		this.embarazo = embarazo;
 		this.prioridad = (embarazo) ? 1:( (edad>60) ? 2:3);
 		this.llegada = new Date();
 	}
