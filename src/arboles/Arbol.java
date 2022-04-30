@@ -53,7 +53,7 @@ public class Arbol<E extends Comparable<E>>  {
 
 		}
 	}
-	//Posorden
+	//Inorden
 	/* Algoritmo
 	 * Izquierda - Raiz - Derecha  */
 	public void inorden() {
@@ -67,6 +67,22 @@ public class Arbol<E extends Comparable<E>>  {
 			inorden(r.getHijoDer());
 		}
 	}
+	
+	//Por arreglos
+	public ArrayList<NodoB<E>> preordenArr() {
+		ArrayList<NodoB<E>> preOrden = new ArrayList<>();
+		preordenArr(raiz, preOrden);
+		return preOrden;
+		
+	}
+	private void preordenArr(NodoB<E> r, ArrayList<NodoB<E>> preOrden) {
+		if(r!=null) {
+			preOrden.add(r);
+			preordenArr(r.getHijoIzq(), preOrden);
+			preordenArr(r.getHijoDer(), preOrden);
+		}
+	}
+	
 	public ArrayList<NodoB<E>>  inordenArr() {
 		ArrayList<NodoB<E>> inOrden = new ArrayList<>();
 		inordenArr(raiz, inOrden);

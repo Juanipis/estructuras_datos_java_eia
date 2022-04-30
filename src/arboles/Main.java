@@ -1,5 +1,7 @@
 package arboles;
 
+import java.util.ArrayList;
+
 import test.Persona;
 
 public class Main {
@@ -47,13 +49,26 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ArrayList<Integer> pre = new ArrayList<>();
+		ArrayList<Integer> in = new ArrayList<>();
+		pre.add(5);pre.add(2);pre.add(1);pre.add(3);pre.add(4);pre.add(9);pre.add(7);pre.add(6);pre.add(8);pre.add(10);pre.add(15);pre.add(16);
+		in.add(1);in.add(2);in.add(3);in.add(4);in.add(5);in.add(6);in.add(7);in.add(8);in.add(9);in.add(10);in.add(15);in.add(16);
+//		System.out.println(pre);
+//		System.out.println(in);
+//		System.out.println(pre.subList(1, pre.indexOf(9))); //Para lado izquierdo, de 1 a el indice del hermano
+//		System.out.println(in.subList(0, in.indexOf(5))); // de 0 hasta la raiz
+//		System.out.println(pre.subList(pre.indexOf(9), pre.size())); // Para lado derecho desde el hijo derecha hasta el tamano
+//		System.out.println(in.subList(in.indexOf(5)+1, in.size()));
+		ArbolBinarioBusqueda<Integer> arbol= new ArbolBinarioBusqueda<>();
+		arbol = arbol.crearArbol(pre, in);
+		System.out.println(arbol.raiz);
+		System.out.println(arbol.raiz.hijoIzq + " " + arbol.raiz.hijoDer);
+		System.out.println(arbol.inordenArr());
+		System.out.println(arbol.preordenArr());
+//		arbolBB.eliminarElemento(5);
+//		System.out.println("-------------");
+//		System.out.println(arbolBB.buscarElemento(5));
 		
-		System.out.println(arbolBB.buscarElemento(5));
-		arbolBB.inorden();
-		arbolBB.eliminarElemento(5);
-		System.out.println("-------------");
-		System.out.println(arbolBB.buscarElemento(5));
-		arbolBB.preorden();
 		
 //		System.out.println(arbolBB.buscarElemento(3));
 //		arbolBB.eliminarElemento(3);

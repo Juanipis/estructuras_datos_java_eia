@@ -124,6 +124,48 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		}
 		
 	}
+	
+	
+	//Con inorden y preorden crear arbol
+	public ArbolBinarioBusqueda<E> crearArbol(ArrayList<E> preorden, ArrayList<E> inorden)  {
+		ArbolBinarioBusqueda<E> ar = new ArbolBinarioBusqueda<>();
+		ar.setRaiz(new NodoB<E>(preorden.get(0)));
+		crearArbolNodos(ar, preorden, inorden);
+		return ar;
+		
+		
+	}
+	
+	public void crearArbolNodos(ArbolBinarioBusqueda<E> ar,ArrayList<E> preorden, ArrayList<E> inorden){
+		if(preorden.size() != 1 && preorden.size() != 0) { //Mientras que hayan elementos
+			//Elemento en posicion 0 es la raiz en preorden
+			//Insertamos elemento izquierda
+			try {ar.insertNodo(preorden.get(1));} catch (ExeptionNodo e1) {e1.printStackTrace();}
+			//Contamos la cantidad de elemento en inorden de izquierda a derecha hasta encontrar la raiz
+			int index = 0;
+			while(index < inorden.size() && inorden.get(index).compareTo(preorden.get(0)) !=0 ) {	
+				index++;
+			}
+			//Comprobemos que el que vamos a insertar no sea un elemento repetido, caso de dos elementos en preorden e inorden
+			if(index+1 < preorden.size() && preorden.get(index+1).compareTo(preorden.get(1)) !=0) {
+				try {ar.insertNodo(preorden.get(index+1));} catch (ExeptionNodo e) {e.printStackTrace();}
+			}
+			
+			//Ahora subdividimos ambos arrayList pero eliminando el padre de los que acabamos de insertar
+			ArrayList<E> preordenI = new ArrayList<E>( preorden.subList(1, preorden.indexOf(preorden.get(index+1))));
+			ArrayList<E> inordenI = new ArrayList<E>( inorden.subList(0, inorden.indexOf(preorden.get(0))));
+			
+			ArrayList<E> preordenD = new ArrayList<E>( preorden.subList(preorden.indexOf(preorden.get(index+1)), preorden.size()));
+			ArrayList<E> inordenD = new ArrayList<E>(inorden.subList(inorden.indexOf(preorden.get(0))+1 , inorden.size()));
+			
+			//Llamada recursiva para cada lado
+			crearArbolNodos(ar,preordenI,inordenI);
+			crearArbolNodos(ar,preordenD,inordenD);
+		}
+		
+	}
+		
+	
 }
 
 class ExeptionNodo extends Exception{
