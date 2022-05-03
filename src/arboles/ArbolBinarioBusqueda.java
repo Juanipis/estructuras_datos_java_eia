@@ -68,7 +68,15 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		}	
 	}
 	
-	public void eliminarElemento(E llave) {
+	public NodoB<E> buscarAntecesor(NodoB<E> n) throws ExeptionNodo{
+		return (n.getHijoIzq()==null)? null: buscarMax(n.getHijoIzq());
+	}
+	
+	private NodoB<E> buscarMax(NodoB<E> n) throws ExeptionNodo{
+		return (n.getHijoDer()==null)? n: buscarMax(n.getHijoDer());
+	}
+
+	public void eliminarElemento(E llave) throws ExeptionNodo {
 		NodoB<E> nodoEliminar = buscarElemento(llave);
 		
 		if(nodoEliminar != null) {
@@ -110,9 +118,10 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 			}
 			
 			//Caso 3 ¿Tiene dos hijos?
-			//Vamos a buscar el elemento mas pequeno del subarbol derecho
+			//Vamos a buscar el elemento mas pequeno del subarbol derecho o izquierdo
 			else if(nodoEliminar.hijoDer != null && nodoEliminar.hijoIzq != null) {
 				//El elemento a la derecha del inorden
+				/*
 				ArrayList<NodoB<E>> arr = this.inordenArr();
 				E in;
 				//Arbol izquierda
@@ -123,10 +132,13 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 				else {
 					in = arr.get(arr.indexOf(nodoEliminar)+1).getLlave();
 				}
+				*/
+				//Buscamos antecesor
+				NodoB<E> in = buscarAntecesor(nodoEliminar);
 				//Eliminamos in
-				eliminarElemento(in);
+				eliminarElemento(in.getLlave());
 				//Ahora remplazamos nodoEliminar por in
-				nodoEliminar.setLlave(in);
+				nodoEliminar.setLlave(in.getLlave());
 				
 			}
 		}
@@ -174,6 +186,16 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	}
 		
 	
+	public int altura (NodoB<E> n) {
+		if(n == null) return -1;
+		int altder = (n.getHijoDer() == null ? 0:1 + altura(n.getHijoDer()));
+		int altizq = (n.getHijoIzq() == null ? 0:1 + altura(n.getHijoIzq()));
+		return Math.max(altder, altizq);
+	}
+	
+	public int altura() {
+		return altura(this.raiz);
+	}
 }
 
 class ExeptionNodo extends Exception{

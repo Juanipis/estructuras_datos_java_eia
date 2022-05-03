@@ -65,7 +65,7 @@ public class Main {
 		System.out.println(arbol.raiz.hijoIzq + " " + arbol.raiz.hijoDer);
 		System.out.println(arbol.inordenArr());
 		System.out.println(arbol.preordenArr());
-//		arbolBB.eliminarElemento(5);
+		System.out.println(arbol.altura());
 //		System.out.println("-------------");
 //		System.out.println(arbolBB.buscarElemento(5));
 		
