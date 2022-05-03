@@ -114,7 +114,15 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 			else if(nodoEliminar.hijoDer != null && nodoEliminar.hijoIzq != null) {
 				//El elemento a la derecha del inorden
 				ArrayList<NodoB<E>> arr = this.inordenArr();
-				E in = arr.get(arr.indexOf(nodoEliminar)+1).getLlave();
+				E in;
+				//Arbol izquierda
+				if(arr.indexOf(nodoEliminar)+1 >= arr.size()) {
+					in = arr.get(arr.indexOf(nodoEliminar)-1).getLlave();
+				}
+				//Arbol derecha
+				else {
+					in = arr.get(arr.indexOf(nodoEliminar)+1).getLlave();
+				}
 				//Eliminamos in
 				eliminarElemento(in);
 				//Ahora remplazamos nodoEliminar por in
