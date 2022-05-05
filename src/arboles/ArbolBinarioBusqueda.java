@@ -184,6 +184,15 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		}
 		
 	}
+	
+	public ArbolBinarioBusqueda<E> crearArbol(ArrayList<E> preorden) throws ExeptionNodo  {
+		ArbolBinarioBusqueda<E> ar = new ArbolBinarioBusqueda<>();
+		ar.setRaiz(new NodoB<E>(preorden.get(0)));
+		for (int i = 1; i < preorden.size(); i++) {
+			ar.insertNodo(preorden.get(i));
+		}
+		return ar;
+	}
 		
 	
 	public int altura (NodoB<E> n) {

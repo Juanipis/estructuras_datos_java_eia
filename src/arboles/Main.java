@@ -61,6 +61,12 @@ public class Main {
 //		System.out.println(in.subList(in.indexOf(5)+1, in.size()));
 		ArbolBinarioBusqueda<Integer> arbol= new ArbolBinarioBusqueda<>();
 		arbol = arbol.crearArbol(pre, in);
+		try {
+			arbol = arbol.crearArbol(pre);
+		} catch (ExeptionNodo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(arbol.raiz);
 		System.out.println(arbol.raiz.hijoIzq + " " + arbol.raiz.hijoDer);
 		System.out.println(arbol.inordenArr());
