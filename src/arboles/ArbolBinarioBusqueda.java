@@ -16,7 +16,8 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		raiz=insertNodo(new NodoB<E>(llaveN), raiz);
 		
 	}
-	public void insertNodo(NodoB<E> n) throws ExeptionNodo {
+	
+	protected void insertNodo(NodoB<E> n) throws ExeptionNodo {
 		raiz=insertNodo(n, raiz);
 		
 	}
@@ -205,6 +206,8 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	public int altura() {
 		return altura(this.raiz);
 	}
+
+	
 }
 
 class ExeptionNodo extends Exception{
