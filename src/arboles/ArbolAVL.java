@@ -22,8 +22,9 @@ public class ArbolAVL<E extends Comparable<E>> extends ArbolBinarioBusqueda<E> {
 	}
 	
 	public void eliminarElemento(E n) throws ExeptionNodo {
-		super.eliminarElemento(n);
-		
+		NodoBinario<E> nodo = this.buscarElemento(n);
+		super.eliminarElemento(nodo.getLlave());
+		balancear(nodo.getPadre());
 	}
 
 	public void balancear(NodoBinario<E> n) {

@@ -15,6 +15,7 @@ public class PruebaAVL {
 			arbolAvl.insertNodo(n12);
 			arbolAvl.insertNodo(n2);
 			arbolAvl.insertNodo(n1);
+			
 //			arbolAvl.insertNodo(6);
 //			arbolAvl.insertNodo(13);
 //			arbolAvl.insertNodo(10);
@@ -23,6 +24,11 @@ public class PruebaAVL {
 //			arbolAvl.insertNodo(7);
 //			arbolAvl.insertNodo(4);
 //			arbolAvl.insertNodo(16);
+			arbolAvl.preorden();
+			arbolAvl.inorden();
+			
+			System.out.println("---------");
+			arbolAvl.eliminarElemento(2);
 			arbolAvl.preorden();
 			arbolAvl.inorden();
 		} catch (ExeptionNodo e) {
