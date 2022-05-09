@@ -25,6 +25,8 @@ public class PruebaAVL {
 //			arbolAvl.insertNodo(16);
 			arbolAvl.preorden();
 			arbolAvl.inorden();
+			arbolAvl.eliminarElemento(2);
+			arbolAvl.preorden();
 		} catch (ExeptionNodo e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
