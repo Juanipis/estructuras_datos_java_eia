@@ -1,19 +1,19 @@
 package arboles;
 
-public class NodoB<E extends Comparable<E>> {
+public class NodoBinario<E extends Comparable<E>> {
 	protected E llave;
-	protected NodoB<E> hijoIzq;
-	protected NodoB<E> hijoDer;
-	protected NodoB<E> padre;
+	protected NodoBinario<E> hijoIzq;
+	protected NodoBinario<E> hijoDer;
+	protected NodoBinario<E> padre;
 	
-	public NodoB(E llave) {
+	public NodoBinario(E llave) {
 		this.llave = llave;
 		padre=null;
 		hijoIzq=null;
 		hijoDer=null;
 	}
 
-	public NodoB(E llave, NodoB<E> hijoIzq, NodoB<E> hijoDer, NodoB<E> padre) {
+	public NodoBinario(E llave, NodoBinario<E> hijoIzq, NodoBinario<E> hijoDer, NodoBinario<E> padre) {
 		super();
 		this.llave = llave;
 		this.hijoIzq = hijoIzq;
@@ -29,37 +29,37 @@ public class NodoB<E extends Comparable<E>> {
 		this.llave = llave;
 	}
 
-	public NodoB<E> getHijoIzq() {
+	public NodoBinario<E> getHijoIzq() {
 		return hijoIzq;
 	}
 
-	public void setHijoIzq(NodoB<E> hijoIzq) {
+	public void setHijoIzq(NodoBinario<E> hijoIzq) {
 		if(hijoIzq!=null) {
 			hijoIzq.setPadre(this);
 		}
 		this.hijoIzq = hijoIzq;
 	}
 
-	public NodoB<E> getHijoDer() {
+	public NodoBinario<E> getHijoDer() {
 		return hijoDer;
 	}
 
-	public void setHijoDer(NodoB<E> hijoDer) {
+	public void setHijoDer(NodoBinario<E> hijoDer) {
 		if(hijoDer!=null) {
 			hijoDer.setPadre(this);
 		}
 		this.hijoDer = hijoDer;
 	}
 
-	public NodoB<E> getPadre() {
+	public NodoBinario<E> getPadre() {
 		return padre;
 	}
 
-	public void setPadre(NodoB<E> padre) {
+	public void setPadre(NodoBinario<E> padre) {
 		this.padre = padre;
 	}
 	
-	public int altura (NodoB<E> n) {
+	public int altura (NodoBinario<E> n) {
 		if(n == null) return -1;
 		int altder = (n.getHijoDer() == null ? 0:1 + altura(n.getHijoDer()));
 		int altizq = (n.getHijoIzq() == null ? 0:1 + altura(n.getHijoIzq()));

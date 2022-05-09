@@ -4,12 +4,12 @@ public class PruebaAVL {
 
 	public static void main(String[] args) {
 		
-		NodoB<Integer> n1 = new NodoB<>(1);
-		NodoB<Integer> n2 = new NodoB<>(2);
-		NodoB<Integer> n3 = new NodoB<>(3);
-		NodoB<Integer> n8 = new NodoB<>(8);
-		NodoB<Integer> n12 = new NodoB<>(12);
-		AVL<Integer> arbolAvl = new AVL<>(n8);
+		NodoBinario<Integer> n1 = new NodoBinario<>(1);
+		NodoBinario<Integer> n2 = new NodoBinario<>(2);
+		NodoBinario<Integer> n3 = new NodoBinario<>(3);
+		NodoBinario<Integer> n8 = new NodoBinario<>(8);
+		NodoBinario<Integer> n12 = new NodoBinario<>(12);
+		ArbolAVL<Integer> arbolAvl = new ArbolAVL<>(n8);
 		try {
 			arbolAvl.insertNodo(n3);
 			arbolAvl.insertNodo(n12);
@@ -24,6 +24,7 @@ public class PruebaAVL {
 //			arbolAvl.insertNodo(4);
 //			arbolAvl.insertNodo(16);
 			arbolAvl.preorden();
+			arbolAvl.inorden();
 		} catch (ExeptionNodo e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

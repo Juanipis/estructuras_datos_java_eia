@@ -8,21 +8,21 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		super(null);
 	}
 
-	public ArbolBinarioBusqueda(NodoB<E> raiz) {
+	public ArbolBinarioBusqueda(NodoBinario<E> raiz) {
 		super(raiz);
 	}
 	
 	public void insertNodo(E llaveN) throws ExeptionNodo {
-		raiz=insertNodo(new NodoB<E>(llaveN), raiz);
+		raiz=insertNodo(new NodoBinario<E>(llaveN), raiz);
 		
 	}
 	
-	protected void insertNodo(NodoB<E> n) throws ExeptionNodo {
+	protected void insertNodo(NodoBinario<E> n) throws ExeptionNodo {
 		raiz=insertNodo(n, raiz);
 		
 	}
 
-	protected NodoB<E> insertNodo(NodoB<E> n, NodoB<E> r) throws ExeptionNodo {
+	protected NodoBinario<E> insertNodo(NodoBinario<E> n, NodoBinario<E> r) throws ExeptionNodo {
 		if(r==null) {
 			r=n;
 		}else {
@@ -39,12 +39,12 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		return r;
 	}
 	
-	public NodoB<E> buscarElemento(E llave) {
+	public NodoBinario<E> buscarElemento(E llave) {
 		return buscarElemento(llave, this.raiz);
 	}
 	
 	
-	protected NodoB<E> buscarElemento(E llave, NodoB<E> nodo) {
+	protected NodoBinario<E> buscarElemento(E llave, NodoBinario<E> nodo) {
 		
 		if(raiz != null) {
 			//Si el elemento raiz es el buscado
@@ -69,16 +69,16 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 		}	
 	}
 	
-	public NodoB<E> buscarAntecesor(NodoB<E> n) throws ExeptionNodo{
+	public NodoBinario<E> buscarAntecesor(NodoBinario<E> n) throws ExeptionNodo{
 		return (n.getHijoIzq()==null)? null: buscarMax(n.getHijoIzq());
 	}
 	
-	private NodoB<E> buscarMax(NodoB<E> n) throws ExeptionNodo{
+	private NodoBinario<E> buscarMax(NodoBinario<E> n) throws ExeptionNodo{
 		return (n.getHijoDer()==null)? n: buscarMax(n.getHijoDer());
 	}
 
-	public void eliminarElemento(E llave) throws ExeptionNodo {
-		NodoB<E> nodoEliminar = buscarElemento(llave);
+	protected void eliminarElemento(E llave) throws ExeptionNodo {
+		NodoBinario<E> nodoEliminar = buscarElemento(llave);
 		
 		if(nodoEliminar != null) {
 			//Caso 1 ¿Es hoja?
@@ -135,7 +135,7 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 				}
 				*/
 				//Buscamos antecesor
-				NodoB<E> in = buscarAntecesor(nodoEliminar);
+				NodoBinario<E> in = buscarAntecesor(nodoEliminar);
 				//Eliminamos in
 				eliminarElemento(in.getLlave());
 				//Ahora remplazamos nodoEliminar por in
@@ -150,7 +150,7 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	//Con inorden y preorden crear arbol
 	public ArbolBinarioBusqueda<E> crearArbol(ArrayList<E> preorden, ArrayList<E> inorden)  {
 		ArbolBinarioBusqueda<E> ar = new ArbolBinarioBusqueda<>();
-		ar.setRaiz(new NodoB<E>(preorden.get(0)));
+		ar.setRaiz(new NodoBinario<E>(preorden.get(0)));
 		crearArbolNodos(ar, preorden, inorden);
 		return ar;
 		
@@ -188,7 +188,7 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	
 	public ArbolBinarioBusqueda<E> crearArbol(ArrayList<E> preorden) throws ExeptionNodo  {
 		ArbolBinarioBusqueda<E> ar = new ArbolBinarioBusqueda<>();
-		ar.setRaiz(new NodoB<E>(preorden.get(0)));
+		ar.setRaiz(new NodoBinario<E>(preorden.get(0)));
 		for (int i = 1; i < preorden.size(); i++) {
 			ar.insertNodo(preorden.get(i));
 		}
@@ -196,7 +196,7 @@ public class ArbolBinarioBusqueda<E extends Comparable<E>> extends Arbol<E> {
 	}
 		
 	
-	public int altura (NodoB<E> n) {
+	public int altura (NodoBinario<E> n) {
 		if(n == null) return -1;
 		int altder = (n.getHijoDer() == null ? 0:1 + altura(n.getHijoDer()));
 		int altizq = (n.getHijoIzq() == null ? 0:1 + altura(n.getHijoIzq()));

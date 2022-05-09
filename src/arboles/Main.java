@@ -6,13 +6,13 @@ import test.Persona;
 
 public class Main {
 	public static void main(String[] args) {
-		NodoB<Integer> n1 = new NodoB<>(10);
-		NodoB<Integer> n2 = new NodoB<>(7);
-		NodoB<Integer> n3 = new NodoB<>(15);
-		NodoB<Integer> n4 = new NodoB<>(5);
-		NodoB<Integer> n5 = new NodoB<>(9);
-		NodoB<Integer> n6 = new NodoB<>(12);
-		NodoB<Integer> n20 = new NodoB<>(20);
+		NodoBinario<Integer> n1 = new NodoBinario<>(10);
+		NodoBinario<Integer> n2 = new NodoBinario<>(7);
+		NodoBinario<Integer> n3 = new NodoBinario<>(15);
+		NodoBinario<Integer> n4 = new NodoBinario<>(5);
+		NodoBinario<Integer> n5 = new NodoBinario<>(9);
+		NodoBinario<Integer> n6 = new NodoBinario<>(12);
+		NodoBinario<Integer> n20 = new NodoBinario<>(20);
 		
 		/*
 		n1.setHijoIzq(n2);
