@@ -26,11 +26,8 @@ public class PruebaAVL {
 //			arbolAvl.insertNodo(16);
 			arbolAvl.preorden();
 			arbolAvl.inorden();
-			
-			System.out.println("---------");
 			arbolAvl.eliminarElemento(2);
 			arbolAvl.preorden();
-			arbolAvl.inorden();
 		} catch (ExeptionNodo e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
