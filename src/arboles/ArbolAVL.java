@@ -24,10 +24,13 @@ public class ArbolAVL<E extends Comparable<E>> extends ArbolBinarioBusqueda<E> {
 	public void eliminarElemento(E n) throws ExeptionNodo {
 		NodoBinario<E> nodo = this.buscarElemento(n);
 		super.eliminarElemento(n);
-		do {
-			nodo = nodo.getPadre();
-			this.balancear(nodo);
-		} while (nodo.getLlave().compareTo(this.raiz.getLlave()) != 0);
+		if(nodo.getPadre() != null) {
+			do {
+				nodo = nodo.getPadre();
+				this.balancear(nodo);
+			} while (nodo.getLlave().compareTo(this.raiz.getLlave()) != 0);
+		}
+		
 		
 	}
 
