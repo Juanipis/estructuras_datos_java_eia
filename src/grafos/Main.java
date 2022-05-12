@@ -37,19 +37,21 @@ public class Main {
         grafo.getVertices().add(v6);
         grafo.getVertices().add(v7);
         
+        Grafo<Integer> grafoPeso= new Grafo<Integer>();
         Stack<Vertice<Integer>> s;
 
  
 
         s = grafo.MenorCaminoSinPesos(v1, v7);
 		grafo.imprimirCamino(s);
-		System.out.println(v7.getDistance());
-		//s=grafo.dijkstra(v1, v7);
+		
+		System.out.println("Distancia de v7:" + v7.getDistance());
+		s=grafo.dijkstra(v1, v7);
 		grafo.imprimirCamino(s);
-		System.out.println(v7.getDistance());
-		//s=grafo.dijkstra(1, 7);
+		System.out.println("Distancia de v7:" + v7.getDistance());
+		s=grafo.dijkstra(v1, v7);
 		grafo.imprimirCamino(s);
-		System.out.println(v7.getDistance());
+		System.out.println("Distancia de v7:" + v7.getDistance());
 
 	}
 

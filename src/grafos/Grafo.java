@@ -2,6 +2,7 @@ package grafos;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -50,7 +51,35 @@ public class Grafo<E extends Comparable<E>> {
 				if(v.getAnterior()== null) {
 					v.setAnterior(actual);
 					v.setDistance(actual.getDistance()+1);
-					vSinVisitar.add(v);
+					if(!vSinVisitar.contains(v)) {
+						vSinVisitar.add(v);
+					}
+				}
+			}
+		}
+		return camino(inicio, destino);
+	}
+	
+	public Stack<Vertice<E>> dijkstra(Vertice<E> inicio, Vertice<E> destino){
+		inicializarVertices();
+		PriorityQueue<Vertice<E>> vSinVisitar = new PriorityQueue<>();
+		inicio.setDistance(0);
+		vSinVisitar.add(inicio);
+		while(!vSinVisitar.isEmpty()) {
+			//buscar vertice
+			Vertice<E> actual = vSinVisitar.poll();
+			//Recorrer adyacentes y poner en cola sin visitar
+			ListIterator<Arista<E>> iterator = actual.getAdyacentes().listIterator();
+			while(iterator.hasNext()) {
+				Arista<E> a = iterator.next();
+				Vertice<E> v = a.getDestino();
+				if(v.getAnterior() == null || (actual.getDistance()+a.getPeso()<v.getDistance())) {
+					v.setAnterior(actual);
+					v.setDistance(actual.getDistance()+a.getPeso());
+					if(!vSinVisitar.contains(v)) {
+						vSinVisitar.add(v);
+					}
+					
 				}
 			}
 		}
